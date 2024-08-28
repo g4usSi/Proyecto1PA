@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Proyecto1PA
 {
-    internal class Carro : Vehiculos
+    public class Pago
     {
+
 
     }
 }

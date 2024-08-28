@@ -9,7 +9,6 @@
         {
             try
             {
-                Console.Write("> Ingrese un número entero positivo: ");
                 numeroEntero = Convert.ToInt32(Console.ReadLine());
 
                 if (numeroEntero > 0)
@@ -38,10 +37,6 @@
         }
 
         return numeroEntero;
-    }
-    public static bool ObtenerBooleanoNatural(int numero)
-    {
-        return numero > 0;
     }
     public static string Enmascarado(bool estado) {
         if (estado)
@@ -137,6 +132,23 @@
         }
         return numeroDouble;
     }
+    public static bool TerminarEjecucion() 
+    {
+        bool salir = false;
+        Console.Write("Seguro desea salir? (si/no): ");
+        string terminarEjecucion = Console.ReadLine().ToLower();
+        if (terminarEjecucion == "si" || terminarEjecucion == "s")
+        {
+            Console.Clear();
+            Console.WriteLine("\t\t\tFELIZ DIA");
+            return salir = true;
+        }
+        else 
+        {
+            Console.WriteLine("  > > > Regresando al menu...");
+            return false;
+        }
+    }
     //Pa mi en el futuro UwU
     //recibe un lambda
     public static T BuscarObjetoLista<T>(List<T> listaObjetos, Predicate<T> criterio)
@@ -152,6 +164,4 @@
             return default(T);
         }
     }
-
-
 }
