@@ -12,6 +12,7 @@ namespace Proyecto1PA
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Color { get; set; }
+        //modificables en la heredacion
         public int Cuota { get; set; }
         public string Tipo { get; set; }
 
@@ -56,11 +57,14 @@ namespace Proyecto1PA
         }
         public void MostrarVehiculo()
         {
-            Console.WriteLine("Placa: ");
-            Console.WriteLine("Marca: ");
-            Console.WriteLine("Modelo: ");
-            Console.WriteLine("Color: ");
-            Console.WriteLine("Cuota: ");
+            Console.WriteLine($"Tipo Vehiculo: {Tipo}");
+            Console.WriteLine($"Placa: {Placa}");
+            Console.WriteLine($"Marca: {Marca}");
+            Console.WriteLine($"Modelo: {Modelo}");
+            Console.WriteLine($"Color: {Color}");
+            Console.WriteLine($"Cuota: {Cuota}");
+            //Console.WriteLine($"Hora de Registro: {}");
+            //va cuando lo llame en el administrador, parking
         }
         
 

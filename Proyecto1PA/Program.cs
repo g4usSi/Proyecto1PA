@@ -4,6 +4,7 @@ List<Vehiculos> listaVehiculos = new List<Vehiculos>();
 
 int opcion = 0;
 bool salir = false;
+
 do
 {
     Menu();
@@ -13,36 +14,30 @@ do
         case 1:
             Console.Clear();
             //imprimir los vehiculos
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t\t\t // REGISTRAR VEHICULO //");
-            Console.ResetColor();
+            Utilidades.Titulo("// REGISTRAR VEHICULO //");
 
             break;
         case 2:
             Console.Clear();
             //imprimir los vehiculos
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t\t\t// RETIRAR VEHICULO //");
-            Console.ResetColor();
+            Utilidades.Titulo("// RETIRAR VEHICULO //");
 
             break;
         case 3:
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t\t\t // MOSTRAR VEHICULOS ESTACIONADOS //");
+            Utilidades.Titulo("// MOSTRAR VEHICULOS ESTACIONADOS //");
             Console.ResetColor();
 
             break;
         case 4:
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t\t\t // MOSTRAR ESPACIOS DISPONIBLES //");
-            Console.ResetColor();
+            Utilidades.Titulo("// MOSTRAR ESPACIOS DISPONIBLES //");
 
             break;
         case 5:
             Console.Clear();
-            Console.WriteLine("\t\t\t // SALIR//");
+            Console.WriteLine("// SALIR//");
             salir = Utilidades.TerminarEjecucion();
             break;
         default:

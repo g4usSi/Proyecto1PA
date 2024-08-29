@@ -1,5 +1,11 @@
 ﻿public static class Utilidades
 {
+    public static void Titulo(string contenidoTitulo) 
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("\t\t\t "+contenidoTitulo);
+        Console.ResetColor();
+    }
     public static int LlenarNumeroEntero()
     {
         int numeroEntero = 0;
@@ -17,18 +23,19 @@
                 }
                 else
                 {
-                    Console.WriteLine("No puede ingresar números negativos o cero. Intente de nuevo:");
+                    Console.Write("No puede ingresar números negativos o cero. \nIntente de nuevo: ");
                 }
             }
             catch (FormatException)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("[!] Error: no puede ingresar letras. Intente de nuevo:");
+                Console.Write("[!] Error: no puede ingresar letras. \nIntente de nuevo: ");
             }
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("[!] Error desconocido: " + ex.Message);
+                Console.Write("[!] Error desconocido: " + ex.Message);
+                Console.Write("Intente de nuevo: ");
             }
             finally
             {
