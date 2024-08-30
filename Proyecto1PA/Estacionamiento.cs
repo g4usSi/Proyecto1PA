@@ -18,11 +18,23 @@ namespace Proyecto1PA
             this.Hora = date;
             Pago = pago;
         }
+
         public void AsignarEspacio(List<Estacionamiento> listaEstacionamiento, int tamañoEstacionamiento) 
         {
+            string placa, marca, modelo, color;
             if (ComprobarEspacios(listaEstacionamiento, tamañoEstacionamiento))
             {
-                
+                Console.WriteLine();
+                Console.Write("Ingrese la placa del vehiculo: ");
+                placa = Utilidades.LlenarString();
+                Console.Write("Ingrese la marca del vehiculo: ");
+                marca = Utilidades.LlenarString();
+                Console.Write("Ingrese el modelo del vehiculo: ");
+                modelo = Utilidades.LlenarString();
+                Console.Write("Ingrese el color del vehiculo: ");
+                color = Utilidades.LlenarString();
+
+
             }
             else
             {
@@ -40,6 +52,25 @@ namespace Proyecto1PA
                 return false;
             }
         }
+        private void SeleccionarTipoVehiculo(string placa, string marca, string modelo, string color) 
+        {
+            Console.WriteLine("1. Automovil");
+            Console.WriteLine("2. Motocicleta");
+            Console.WriteLine("3. Camion");
+
+            int opcion;
+            switch (opcion = Utilidades.LlenarNumeroEntero()) 
+            {
+                case 1:
+                    Console.WriteLine("");
+                break;
+                case 2:
+                break;
+                case 3:
+                break;
+            }
+        }
+
 
 
     }

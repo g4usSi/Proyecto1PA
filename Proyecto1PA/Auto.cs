@@ -8,10 +8,10 @@ namespace Proyecto1PA
 {
     public class Auto : Vehiculo
     {
-        public Auto()
+        public Auto(string placa, string marca, string modelo, string color, int cuota)
+            :base(placa, marca, modelo, color, cuota : 10)
         {
-            this.Cuota = 10;
-            this.Tipo = "Carro";
+            this.Tipo = "Automovil";
         }
         public override int ObtenerCuota()
         {

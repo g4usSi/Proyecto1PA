@@ -8,10 +8,10 @@ namespace Proyecto1PA
 {
     public class Motocicleta : Vehiculo
     {
-        public Motocicleta()
+        public Motocicleta(string placa, string marca, string modelo, string color, int cuota)
+            : base(placa, marca, modelo, color, cuota: 5)
         {
-            this.Cuota = 5;
-            this.Tipo = "Moto";
+            this.Tipo = "Motocicleta";
         }
         public override int ObtenerCuota()
         {

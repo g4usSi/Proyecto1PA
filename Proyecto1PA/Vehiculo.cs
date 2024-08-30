@@ -13,7 +13,7 @@ namespace Proyecto1PA
         public string Modelo { get; set; }
         public string Color { get; set; }
         //modificables en la heredacion
-        private int Cuota { get; set; }
+        protected int Cuota { get; set; }
         public string Tipo { get; set; }
 
         public Vehiculo(string placa, string marca, string modelo, string color, int cuota)
@@ -24,22 +24,9 @@ namespace Proyecto1PA
             this.Color = color;
         }
         public Vehiculo() { }
+
         //Agregar un vehiculo
-        public virtual void AgregarVehiculo()
-        {
-            string placa, marca, modelo, color;
-            Console.WriteLine();
-            Console.Write("Ingrese la placa del vehiculo: ");
-            placa = Utilidades.LlenarString();
-            Console.Write("Ingrese la marca del vehiculo: ");
-            marca = Utilidades.LlenarString();
-            Console.Write("Ingrese el modelo del vehiculo: ");
-            modelo = Utilidades.LlenarString();
-            Console.Write("Ingrese el color del vehiculo: ");
-            color = Utilidades.LlenarString();
-            RegistrarVehiculo(placa, marca, modelo, color);
-        }
-        protected void RegistrarVehiculo(string placa, string marca, string modelo, string color)
+        public virtual void RegistrarVehiculo(string placa, string marca, string modelo, string color)
         {
             if (placa.Length >= 6)
             {
