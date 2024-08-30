@@ -8,7 +8,7 @@ namespace Proyecto1PA
 {
     public class Camion : Vehiculo
     {
-        public Camion(string placa, string marca, string modelo, string color, int cuota)
+        public Camion(string placa, string marca, string modelo, string color)
             : base(placa, marca, modelo, color, cuota: 15)
         {
             this.Tipo = "Camion";

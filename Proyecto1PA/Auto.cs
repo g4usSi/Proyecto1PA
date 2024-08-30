@@ -8,7 +8,7 @@ namespace Proyecto1PA
 {
     public class Auto : Vehiculo
     {
-        public Auto(string placa, string marca, string modelo, string color, int cuota)
+        public Auto(string placa, string marca, string modelo, string color)
             :base(placa, marca, modelo, color, cuota : 10)
         {
             this.Tipo = "Automovil";
