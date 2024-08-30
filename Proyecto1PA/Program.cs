@@ -39,7 +39,9 @@
                     case 4:
                         Console.Clear();
                         Utilidades.Titulo("▓▓▓▓▓▓ MOSTRAR ESPACIOS DISPONIBLES ▓▓▓▓▓▓");
-
+                        estacionamiento.EspaciosDisponibles(listaVehiculos, tamañoEstacionamiento);
+                        Console.WriteLine();
+                        Utilidades.EsperaConfirmacion();
                         break;
                     case 5:
                         Console.Clear();

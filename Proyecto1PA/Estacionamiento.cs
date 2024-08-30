@@ -43,7 +43,7 @@ namespace Proyecto1PA
         }
         public bool ComprobarEspacios(List<Estacionamiento> listaEspacios, int tamañoEstacionamiento) 
         {
-            if (listaEspacios.Count <= tamañoEstacionamiento)
+            if (listaEspacios.Count < tamañoEstacionamiento)
             {
                 return true;
             }
@@ -93,6 +93,9 @@ namespace Proyecto1PA
                 return;
             }
         }
+        //Retirar vehiculo opcion 2
+
+
         //Mostrar opcion 3
         public void MostrarInformacion()
         {
@@ -121,16 +124,18 @@ namespace Proyecto1PA
             }
         }
         //Espacios Disponibles
-        public void EspaciosDisponibles(List<Estacionamiento> listaEstacionamientos, int tamañoParqueo) 
-        { 
-            int espaciosDisponibles = tamañoParqueo - listaEstacionamientos.Count ;
-            if (espaciosDisponibles > 0)
+        public void EspaciosDisponibles(List<Estacionamiento> listaEstacionamientos, int tamañoParqueo)
+        {
+            bool hayEspacio = ComprobarEspacios(listaEstacionamientos, tamañoParqueo);
+            if (hayEspacio)
             {
-
+                int espaciosOcupados = listaEstacionamientos.Count;
+                int espaciosDisponibles = tamañoParqueo - espaciosOcupados;
+                Console.WriteLine("Espacios disponibles: " + espaciosDisponibles);
             }
-            else 
-            { 
-            
+            else
+            {
+                Console.WriteLine("Estacionamiento lleno, no hay espacios disponibles...");
             }
         }
 
