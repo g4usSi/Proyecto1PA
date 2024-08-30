@@ -6,39 +6,40 @@ using System.Threading.Tasks;
 
 namespace Proyecto1PA
 {
-    public class Vehiculos
+    public class Vehiculo
     {
         public string Placa { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Color { get; set; }
         //modificables en la heredacion
-        public int Cuota { get; set; }
+        private int Cuota { get; set; }
         public string Tipo { get; set; }
 
-        public Vehiculos(string placa, string marca, string modelo, string color, int cuota)
+        public Vehiculo(string placa, string marca, string modelo, string color, int cuota)
         {
             this.Placa = placa;
             this.Marca = marca;
             this.Modelo = modelo;
             this.Color = color;
         }
-        public Vehiculos() { }
+        public Vehiculo() { }
         //Agregar un vehiculo
         public virtual void AgregarVehiculo()
         {
             string placa, marca, modelo, color;
+            Console.WriteLine();
             Console.Write("Ingrese la placa del vehiculo: ");
             placa = Utilidades.LlenarString();
             Console.Write("Ingrese la marca del vehiculo: ");
             marca = Utilidades.LlenarString();
-            Console.Write("Ingrese la modelo del vehiculo: ");
+            Console.Write("Ingrese el modelo del vehiculo: ");
             modelo = Utilidades.LlenarString();
-            Console.Write("Ingrese la color del vehiculo: ");
+            Console.Write("Ingrese el color del vehiculo: ");
             color = Utilidades.LlenarString();
             RegistrarVehiculo(placa, marca, modelo, color);
         }
-        protected virtual void RegistrarVehiculo(string placa, string marca, string modelo, string color)
+        protected void RegistrarVehiculo(string placa, string marca, string modelo, string color)
         {
             if (placa.Length >= 6)
             {
@@ -49,7 +50,7 @@ namespace Proyecto1PA
             }
             else
             {
-                Console.WriteLine("[!] Datos incorrectos, no se ha registrado el vehiculo.");
+                Console.WriteLine("\t[!] Datos incorrectos, no se ha registrado el vehiculo.");
                 return;
             }
         }
@@ -64,7 +65,8 @@ namespace Proyecto1PA
             //Console.WriteLine($"Hora de Registro: {}");
             //va cuando lo llame en el administrador, parking
         }
-        public void MostrarVehiculos(List<Vehiculos> listaVehiculos)
+        //este metodo no se usa...
+        public void MostrarVehiculos(List<Vehiculo> listaVehiculos)
         {
             foreach (var vehiculo in listaVehiculos)
             {
@@ -74,7 +76,7 @@ namespace Proyecto1PA
         //polimorf
         public virtual int ObtenerCuota()
         {
-            return Cuota;
+            return this.Cuota;
         }
 
 

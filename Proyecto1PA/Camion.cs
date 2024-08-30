@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace Proyecto1PA
 {
-    public class Camion : Vehiculos
+    public class Camion : Vehiculo
     {
         public Camion()
         {
             this.Cuota = 15;
             this.Tipo = "Camion";
         }
-        public override void AgregarVehiculo()
+        public override int ObtenerCuota()
         {
-            base.AgregarVehiculo();
+            return this.Cuota;
         }
-
-
-
-
     }
 }

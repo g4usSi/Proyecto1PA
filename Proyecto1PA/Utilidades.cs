@@ -6,6 +6,8 @@
         Console.WriteLine("\t\t\t "+contenidoTitulo);
         Console.ResetColor();
     }
+    //numero entero solo para menu
+    //
     public static int LlenarNumeroEntero()
     {
         int numeroEntero = 0;
@@ -30,6 +32,7 @@
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("[!] Error: no puede ingresar letras. \nIntente de nuevo: ");
+
             }
             catch (Exception ex)
             {
@@ -69,8 +72,10 @@
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("[!] No puede ingresar datos vacíos...");
                 Console.Write("Intente de nuevo: ");
+                Console.ResetColor();
             }
         }
         return cadena;
