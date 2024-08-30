@@ -25,9 +25,7 @@ do
             break;
         case 3:
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Yellow;
             Utilidades.Titulo("// MOSTRAR VEHICULOS ESTACIONADOS //");
-            Console.ResetColor();
 
             break;
         case 4:
@@ -38,6 +36,7 @@ do
         case 5:
             Console.Clear();
             Console.WriteLine("// SALIR//");
+            Console.WriteLine("[!] Los datos del programa se eliminaran...");
             salir = Utilidades.TerminarEjecucion();
             break;
         default:
@@ -58,4 +57,8 @@ static void Menu()
     Console.WriteLine("3. Mostrar vehiculos estacionados");
     Console.WriteLine("4. Mostrar espacios disponibles");
     Console.WriteLine("5. Salir");
+}
+static void SubMenu() 
+{ 
+
 }

@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace Proyecto1PA
 {
-    internal class Camion:Vehiculos
+    public class Camion : Vehiculos
     {
+        public Camion()
+        {
+            this.Cuota = 15;
+            this.Tipo = "Camion";
+        }
+        public override void AgregarVehiculo()
+        {
+            base.AgregarVehiculo();
+        }
+
+
+
 
     }
 }

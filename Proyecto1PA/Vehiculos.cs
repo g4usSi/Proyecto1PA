@@ -22,7 +22,6 @@ namespace Proyecto1PA
             this.Marca = marca;
             this.Modelo = modelo;
             this.Color = color;
-            this.Cuota = cuota;
         }
         public Vehiculos() { }
         //Agregar un vehiculo
@@ -37,12 +36,11 @@ namespace Proyecto1PA
             modelo = Utilidades.LlenarString();
             Console.Write("Ingrese la color del vehiculo: ");
             color = Utilidades.LlenarString();
-            //Este metodo va despues, en cada clase hija
             RegistrarVehiculo(placa, marca, modelo, color);
         }
-        protected virtual void RegistrarVehiculo(string placa, string marca, string modelo, string color) 
+        protected virtual void RegistrarVehiculo(string placa, string marca, string modelo, string color)
         {
-            if (placa.Length >= 8)
+            if (placa.Length >= 6)
             {
                 this.Placa = placa;
                 this.Marca = marca;
@@ -55,7 +53,7 @@ namespace Proyecto1PA
                 return;
             }
         }
-        public void MostrarVehiculo()
+        public virtual void MostrarVehiculo()
         {
             Console.WriteLine($"Tipo Vehiculo: {Tipo}");
             Console.WriteLine($"Placa: {Placa}");
@@ -66,7 +64,20 @@ namespace Proyecto1PA
             //Console.WriteLine($"Hora de Registro: {}");
             //va cuando lo llame en el administrador, parking
         }
-        
+        public void MostrarVehiculos(List<Vehiculos> listaVehiculos)
+        {
+            foreach (var vehiculo in listaVehiculos)
+            {
+                vehiculo.MostrarVehiculo();
+            }
+        }
+        //polimorf
+        public virtual int ObtenerCuota()
+        {
+            return Cuota;
+        }
+
+
 
     }
 }
