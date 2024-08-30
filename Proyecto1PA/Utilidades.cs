@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------
-// Autor: Geovanny Alcon g4usS
+// Autor(es): Geovanny Alcon g4usSi, Henry HDZaid
 // Fecha: 8/30/2024
 // Descripción: Clase de utilidades para manejar funciones comunes 
 //              como validación de entradas, manejo de errores, y 
@@ -8,14 +8,14 @@
 
 public static class Utilidades
 {
-    public static void Titulo(string contenidoTitulo) 
+    public static void TituloMensaje(string contenidoTitulo) 
     {
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("\t\t\t "+contenidoTitulo);
         Console.ResetColor();
     }
-    public static void Error(string contenidoTitulo)
+    public static void ErrorMensaje(string contenidoTitulo)
     {
         Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Red;
@@ -80,7 +80,6 @@ public static class Utilidades
         {
             return "No disponible";
         }
-
     }
     public static string LlenarString()
     {

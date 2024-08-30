@@ -19,26 +19,26 @@
                     case 1:
                         Console.Clear();
                         //imprimir los vehiculos
-                        Utilidades.Titulo("▓▓▓▓▓▓ REGISTRAR VEHICULO ▓▓▓▓▓▓");
+                        Utilidades.TituloMensaje("▓▓▓▓▓▓ REGISTRAR VEHICULO ▓▓▓▓▓▓");
                         estacionamiento.AsignarEspacio(listaVehiculos, tamañoEstacionamiento);
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 2:
                         Console.Clear();
                         //imprimir los vehiculos
-                        Utilidades.Titulo("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
+                        Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
 
                         break;
                     case 3:
                         Console.Clear();
-                        Utilidades.Titulo("▓▓▓▓▓▓ MOSTRAR VEHICULOS ESTACIONADOS ▓▓▓▓▓▓");
+                        Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR VEHICULOS ESTACIONADOS ▓▓▓▓▓▓");
                         estacionamiento.MostrarInformacionLista(listaVehiculos);
                         Console.WriteLine();
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 4:
                         Console.Clear();
-                        Utilidades.Titulo("▓▓▓▓▓▓ MOSTRAR ESPACIOS DISPONIBLES ▓▓▓▓▓▓");
+                        Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR ESPACIOS DISPONIBLES ▓▓▓▓▓▓");
                         estacionamiento.EspaciosDisponibles(listaVehiculos, tamañoEstacionamiento);
                         Console.WriteLine();
                         Utilidades.EsperaConfirmacion();
@@ -51,7 +51,7 @@
                         break;
                     default:
                         Console.Clear();
-                        Utilidades.Error("Opcion Incorrecta...\nRegresando al menu...\n");
+                        Utilidades.ErrorMensaje("Opcion Incorrecta...\nRegresando al menu...\n");
                         break;
                 }
             } while (!salir);

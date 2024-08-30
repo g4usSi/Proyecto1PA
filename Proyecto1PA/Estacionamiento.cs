@@ -38,7 +38,7 @@ namespace Proyecto1PA
             }
             else
             {
-                Utilidades.Error("Estacionamiento completamente lleno...");
+                Utilidades.ErrorMensaje("Estacionamiento completamente lleno...");
             }
         }
         public bool ComprobarEspacios(List<Estacionamiento> listaEspacios, int tamañoEstacionamiento) 
@@ -54,9 +54,9 @@ namespace Proyecto1PA
         }
         private void RegistrarTipoVehiculo(string placa, string marca, string modelo, string color, List<Estacionamiento> listaEspacios) 
         {
-            if (placa.Length < 6) 
+            if (placa.Length < 6 || PlacaRepetida(listaEspacios, placa))
             {
-                Utilidades.Error("Datos incorrectos, no se ha registrado el vehiculo.");
+                Utilidades.ErrorMensaje("Datos incorrectos, no se ha registrado el vehiculo.");
                 return;
             }
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -68,6 +68,7 @@ namespace Proyecto1PA
             Console.Write(" > Ingrese una opcion: ");
             int opcion = Utilidades.LlenarNumeroEntero();
             Console.WriteLine();
+
             switch (opcion) 
             {
                 case 1:
@@ -93,8 +94,27 @@ namespace Proyecto1PA
                 return;
             }
         }
+        private bool PlacaRepetida(List<Estacionamiento> listaEstacionamiento, string placa) 
+        {
+            foreach (var vehiculoActual in listaEstacionamiento) 
+            {
+                if (vehiculoActual.Vehiculo.Placa.ToLower() == placa.ToLower()) 
+                {
+                    Utilidades.ErrorMensaje("\t\tPlaca repetida");
+                    return true;
+                }
+            }
+            return false;
+        }
         //Retirar vehiculo opcion 2
-
+        public void RetirarVehiculo() 
+        {
+            
+        }
+        public Vehiculo BuscarVehiculo() 
+        { 
+            
+        }
 
         //Mostrar opcion 3
         public void MostrarInformacion()
@@ -105,7 +125,7 @@ namespace Proyecto1PA
         {
             if (listaEstacionamiento.Count > 0)
             {
-                Utilidades.Titulo("INFORMACION DE LOS VEHICULOS");
+                Utilidades.TituloMensaje("\tINFORMACION DE LOS VEHICULOS");
                 Console.WriteLine();
                 int posicion = 1;
                 foreach (var vehiculo in listaEstacionamiento)
@@ -119,7 +139,7 @@ namespace Proyecto1PA
             }
             else
             {
-                Utilidades.Error("Aun no hay vehiculos en el estacionamiento...");
+                Utilidades.ErrorMensaje("Aun no hay vehiculos en el estacionamiento...");
                 return;
             }
         }
