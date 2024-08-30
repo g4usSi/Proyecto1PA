@@ -18,7 +18,7 @@ namespace Proyecto1PA
             this.Hora = date;
         }
         public Estacionamiento() { }
-
+        //Agregacion opcion 1
         public void AsignarEspacio(List<Estacionamiento> listaEstacionamiento, int tamañoEstacionamiento) 
         {
             string placa, marca, modelo, color;
@@ -26,18 +26,19 @@ namespace Proyecto1PA
             {
                 Console.WriteLine();
                 Console.Write("Ingrese la placa del vehiculo: ");
-                placa = Utilidades.LlenarString();
+                placa = Utilidades.LlenarString().ToUpper();
                 Console.Write("Ingrese la marca del vehiculo: ");
                 marca = Utilidades.LlenarString();
                 Console.Write("Ingrese el modelo del vehiculo: ");
                 modelo = Utilidades.LlenarString();
                 Console.Write("Ingrese el color del vehiculo: ");
                 color = Utilidades.LlenarString();
-                SeleccionarTipoVehiculo(placa, marca, modelo, color, listaEstacionamiento);
+                Console.WriteLine();
+                RegistrarTipoVehiculo(placa, marca, modelo, color, listaEstacionamiento);
             }
             else
             {
-                Console.WriteLine("Estacionamiento completamente lleno...");
+                Utilidades.Error("Estacionamiento completamente lleno...");
             }
         }
         public bool ComprobarEspacios(List<Estacionamiento> listaEspacios, int tamañoEstacionamiento) 
@@ -51,40 +52,87 @@ namespace Proyecto1PA
                 return false;
             }
         }
-        private void SeleccionarTipoVehiculo(string placa, string marca, string modelo, string color, List<Estacionamiento> listaEspacios) 
+        private void RegistrarTipoVehiculo(string placa, string marca, string modelo, string color, List<Estacionamiento> listaEspacios) 
         {
-            Console.WriteLine("Seleccione el tipo de vehiculo");
-            Console.WriteLine("1. Automovil");
-            Console.WriteLine("2. Motocicleta");
-            Console.WriteLine("3. Camion");
-            Console.Write("Ingrese una opcion: ");
-            int opcion;
-            switch (opcion = Utilidades.LlenarNumeroEntero()) 
+            if (placa.Length < 6) 
+            {
+                Utilidades.Error("Datos incorrectos, no se ha registrado el vehiculo.");
+                return;
+            }
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("■ Seleccione el tipo de vehiculo");
+            Console.ResetColor();
+            Console.WriteLine("   1. Automovil");
+            Console.WriteLine("   2. Motocicleta");
+            Console.WriteLine("   3. Camion");
+            Console.Write(" > Ingrese una opcion: ");
+            int opcion = Utilidades.LlenarNumeroEntero();
+            Console.WriteLine();
+            switch (opcion) 
             {
                 case 1:
-                    Console.WriteLine("Automovil\nCuota: Q10/hra");
+                    Console.WriteLine("\t\t// Automovil //\n\t\t■ Cuota: Q10/hra");
                     Auto nuevoAutomovil = new Auto(placa, marca, modelo, color);
                     listaEspacios.Add(new Estacionamiento(nuevoAutomovil, DateTime.Now));
-                    Console.WriteLine("> Se ha registrado su parking...");
+                    Console.WriteLine("> Se ha registrado su parking...: " + DateTime.Now);
                     break;
                 case 2:
-                    Console.WriteLine("Motocicleta\nCuota: Q5/hra");
+                    Console.WriteLine("\t\t// Motocicleta //\n\t\t■ Cuota: Q5/hra");
                     Motocicleta nuevaMotocicleta = new Motocicleta(placa, marca, modelo, color);
                     listaEspacios.Add(new Estacionamiento(nuevaMotocicleta, DateTime.Now));
-                    Console.WriteLine("> Se ha registrado su parking...");
+                    Console.WriteLine("> Se ha registrado su parking...: " + DateTime.Now);
                     break;
                 case 3:
-                    Console.WriteLine("Camion\nCuota: Q15/hra");
+                    Console.WriteLine("\t\t // Camion // \n\t\t■ Cuota: Q15/hra");
                     Camion nuevoCamion = new Camion(placa, marca, modelo, color);
                     listaEspacios.Add(new Estacionamiento(nuevoCamion, DateTime.Now));
-                    Console.WriteLine("> Se ha registrado su parking...");
+                    Console.WriteLine("> Se ha registrado su parking...: "+DateTime.Now);
                     break;
                 default:
                     Console.WriteLine("Opcion incorrecta, regresando al menu...");
                 return;
             }
         }
+        //Mostrar opcion 3
+        public void MostrarInformacion()
+        {
+            Vehiculo.MostrarVehiculo();
+        }
+        public void MostrarInformacionLista(List<Estacionamiento> listaEstacionamiento) 
+        {
+            if (listaEstacionamiento.Count > 0)
+            {
+                Utilidades.Titulo("INFORMACION DE LOS VEHICULOS");
+                Console.WriteLine();
+                int posicion = 1;
+                foreach (var vehiculo in listaEstacionamiento)
+                {
+                    Console.WriteLine("\t\t\tVehiculo #" + posicion);
+                    vehiculo.MostrarInformacion();
+                    Console.WriteLine($"Hora de registro: {vehiculo.Hora}");
+                    posicion++;
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                Utilidades.Error("Aun no hay vehiculos en el estacionamiento...");
+                return;
+            }
+        }
+        //Espacios Disponibles
+        public void EspaciosDisponibles(List<Estacionamiento> listaEstacionamientos, int tamañoParqueo) 
+        { 
+            int espaciosDisponibles = tamañoParqueo - listaEstacionamientos.Count ;
+            if (espaciosDisponibles > 0)
+            {
 
+            }
+            else 
+            { 
+            
+            }
+        }
 
 
     }

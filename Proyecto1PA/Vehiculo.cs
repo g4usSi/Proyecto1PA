@@ -16,43 +16,23 @@ namespace Proyecto1PA
         protected int Cuota { get; set; }
         public string Tipo { get; set; }
 
-        public Vehiculo(string placa, string marca, string modelo, string color, int cuota)
+        public Vehiculo(string placa, string marca, string modelo, string color)
         {
             this.Placa = placa;
             this.Marca = marca;
             this.Modelo = modelo;
             this.Color = color;
         }
-        public Vehiculo() { }
-
-        //Agregar un vehiculo
-        public virtual void RegistrarVehiculo(string placa, string marca, string modelo, string color)
-        {
-            if (placa.Length >= 6)
-            {
-                this.Placa = placa;
-                this.Marca = marca;
-                this.Modelo = modelo;
-                this.Color = color;
-            }
-            else
-            {
-                Console.WriteLine("\t[!] Datos incorrectos, no se ha registrado el vehiculo.");
-                return;
-            }
-        }
         public virtual void MostrarVehiculo()
         {
-            Console.WriteLine($"Tipo Vehiculo: {Tipo}");
-            Console.WriteLine($"Placa: {Placa}");
-            Console.WriteLine($"Marca: {Marca}");
-            Console.WriteLine($"Modelo: {Modelo}");
-            Console.WriteLine($"Color: {Color}");
-            Console.WriteLine($"Cuota: {Cuota}");
-            //Console.WriteLine($"Hora de Registro: {}");
-            //va cuando lo llame en el administrador, parking
+            Console.WriteLine($"- Tipo Vehiculo: {Tipo}");
+            Console.WriteLine($"- Placa: {Placa}");
+            Console.WriteLine($"- Marca: {Marca}");
+            Console.WriteLine($"- Modelo: {Modelo}");
+            Console.WriteLine($"- Color: {Color}");
+            Console.WriteLine($"- Cuota: Q{Cuota}/hra");
         }
-        //este metodo no se usa...
+        //este no se usa nunca ;/
         public void MostrarVehiculos(List<Vehiculo> listaVehiculos)
         {
             foreach (var vehiculo in listaVehiculos)

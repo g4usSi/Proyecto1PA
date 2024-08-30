@@ -1,10 +1,33 @@
-﻿public static class Utilidades
+﻿// -------------------------------------------------------------
+// Autor: Geovanny Alcon g4usS
+// Fecha: 8/30/2024
+// Descripción: Clase de utilidades para manejar funciones comunes 
+//              como validación de entradas, manejo de errores, y 
+//              operaciones sobre listas.
+// -------------------------------------------------------------
+
+public static class Utilidades
 {
     public static void Titulo(string contenidoTitulo) 
     {
+        Console.WriteLine();
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("\t\t\t "+contenidoTitulo);
         Console.ResetColor();
+    }
+    public static void Error(string contenidoTitulo)
+    {
+        Console.WriteLine();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("\t\t\t[!] " + contenidoTitulo);
+        Console.ResetColor();
+    }
+    public static void EsperaConfirmacion() 
+    {
+        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+        Console.WriteLine("\t\t\t\tPresione 'Enter' para continuar...");
+        Console.ReadKey();
+        Console.Clear();
     }
     //numero entero solo para menu
     //
