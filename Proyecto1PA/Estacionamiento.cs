@@ -12,7 +12,7 @@ namespace Proyecto1PA
     {
         public Vehiculo Vehiculo { get; set; }
         public DateTime Hora { get; set; }
-        public int Pago { get; set; }
+        public Pago Pago { get; set; }
         public Estacionamiento(Vehiculo vehiculo, DateTime date)
         {
             this.Vehiculo = vehiculo;
@@ -115,13 +115,18 @@ namespace Proyecto1PA
             int posicion = BuscarVehiculo(listaEstacionamiento, placaActual);
             if (posicion >= 0)
             {
+                //factorizar
+                int tiempoTranscurrido = CalcularTiempo();
+                int cuotaEstacionamiento = CalcularCuota(tiempoTranscurrido);
+                
+
                 listaEstacionamiento.RemoveAt(posicion);
                 Console.WriteLine();
                 //Calcular Pago metodo
             }
             else
             {
-                Console.WriteLine("No hay ninguna placa que coincida");
+                Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n\t\tRegresando al menu...");
             }
         }
         private int BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
@@ -137,10 +142,19 @@ namespace Proyecto1PA
             }
             return -1;
         }
-        public void CalcularPago()
+        public int CalcularTiempo()
         {
-            
+            DateTime fechaHoraSalida = DateTime.Now;
+            TimeSpan horasTranscurridas = fechaHoraSalida - Hora;
+            double tiempoTotal = horasTranscurridas.Hours;
+            int tiempoRedondeado = (int)tiempoTotal;
+            return tiempoRedondeado;
         }
+        public int CalcularCuota(int tiempoTranscurrido) 
+        {
+            return tiempoTranscurrido * Vehiculo.ObtenerCuota();
+        }
+
 
         //Mostrar opcion 3
         public void MostrarInformacion()
