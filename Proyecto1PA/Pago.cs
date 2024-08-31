@@ -8,16 +8,30 @@ namespace Proyecto1PA
 {
     public class Pago
     {
-        public int BilleteIngresado { get; set; }
-        private int BilleteCien = 100;
-        private int BilleteCincuenta = 50;
-        private int BilleteVeinte = 20;
-        private int BilleteDiez = 10;
-        private int BilleteCinco = 5;
-        private int Moneda = 1;
+        public int MontoIngresado { get; set; }
+        //este se le hereda a tarjeta... solo son sus atributos privados de verificacion
+        public virtual void CalcularCambio() 
+        {
+
+        }
 
 
 
+    }
 
+    public class Efectivo : Pago 
+    {
+        private int[] DenomSystem = { 200, 100, 50, 20, 10, 5, 1};
+        private string[] BilletesSystem = { "Doscientos", "Cien", "Ciencunta", "Veinte", "Cinco", "Moneda" };
+        public override void CalcularCambio()
+        {
+            
+        }
+
+    }
+
+    public class Tarjeta : Pago 
+    { 
+        
     }
 }

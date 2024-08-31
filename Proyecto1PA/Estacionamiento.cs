@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -107,12 +108,37 @@ namespace Proyecto1PA
             return false;
         }
         //Retirar vehiculo opcion 2
-        public void RetirarVehiculo() 
+        public void RetirarVehiculo(List<Estacionamiento> listaEstacionamiento) 
         {
-            
+            Console.WriteLine("Ingrese la placa del vehiculo: ");
+            string placaActual = Utilidades.LlenarString();
+            int posicion = BuscarVehiculo(listaEstacionamiento, placaActual);
+            if (posicion >= 0)
+            {
+                listaEstacionamiento.RemoveAt(posicion);
+                Console.WriteLine();
+                //Calcular Pago metodo
+            }
+            else
+            {
+                Console.WriteLine("No hay ninguna placa que coincida");
+            }
         }
-        public Vehiculo BuscarVehiculo() 
-        { 
+        private int BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
+        {
+            int posicion = -1;
+            foreach (var vehiculoActual in listaEstacionamiento)
+            {
+                if (vehiculoActual.Vehiculo.Placa.ToLower().Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return posicion;
+                }
+                posicion++;
+            }
+            return -1;
+        }
+        public void CalcularPago()
+        {
             
         }
 
