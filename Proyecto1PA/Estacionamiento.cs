@@ -112,16 +112,22 @@ namespace Proyecto1PA
         {
             Console.WriteLine("Ingrese la placa del vehiculo: ");
             string placaActual = Utilidades.LlenarString();
-            int posicion = BuscarVehiculo(listaEstacionamiento, placaActual);
-            if (posicion >= 0)
+            Estacionamiento vehiculoRetirar = BuscarVehiculo(listaEstacionamiento, placaActual);
+            if (vehiculoRetirar != null)
             {
-                //factorizar
-                int tiempoTranscurrido = CalcularTiempo();
-                int cuotaEstacionamiento = CalcularCuota(tiempoTranscurrido);
-                
+                vehiculoRetirar.Vehiculo.MostrarVehiculo();
+                int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo(););
+                if (EfectuarPago(cuotaEstacionamiento))
+                {
 
-                listaEstacionamiento.RemoveAt(posicion);
-                Console.WriteLine();
+                    listaEstacionamiento.Remove(vehiculoRetirar);
+                    Console.WriteLine("Feliz Dia");
+                }
+                else
+                {
+                    Console.WriteLine("Su vehiculo sigue en el estacionamiento...");
+                return;
+                }
                 //Calcular Pago metodo
             }
             else
@@ -129,18 +135,16 @@ namespace Proyecto1PA
                 Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n\t\tRegresando al menu...");
             }
         }
-        private int BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
+        private Estacionamiento BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
         {
-            int posicion = -1;
-            foreach (var vehiculoActual in listaEstacionamiento)
+            foreach (var estacionamientoActual in listaEstacionamiento)
             {
-                if (vehiculoActual.Vehiculo.Placa.ToLower().Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
+                if (estacionamientoActual.Vehiculo.Placa.ToLower().Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    return posicion;
+                    return estacionamientoActual;
                 }
-                posicion++;
             }
-            return -1;
+            return null;
         }
         public int CalcularTiempo()
         {
@@ -150,11 +154,44 @@ namespace Proyecto1PA
             int tiempoRedondeado = (int)tiempoTotal;
             return tiempoRedondeado;
         }
-        public int CalcularCuota(int tiempoTranscurrido) 
+        public int CalcularCuotaEstacionamiento(int tiempoTranscurrido) 
         {
             return tiempoTranscurrido * Vehiculo.ObtenerCuota();
         }
+        public bool EfectuarPago(int cuota) 
+        {
+            bool entradaIncorrecta = false;
+            int opcion;
+            while (!entradaIncorrecta)
+            {
+            Console.WriteLine("Seleccione el metodo de pago");
+            Console.WriteLine("1. Efectivo");
+            Console.WriteLine("2. Tarjeta");
+            Console.WriteLine("3. Cancelar");
+            Console.Write("Ingrese una opcion: ");
+            opcion = Utilidades.LlenarNumeroEntero();
+                switch (opcion)
+                {
+                    case 1:
+                        Console.Write("Ingrese el monto: ");
+                        int montoCliente = Utilidades.LlenarNumeroEntero();
+                        this.Pago = new Efectivo(montoCliente, cuota);
+                        return true;
+                    case 2:
 
+                        this.Pago = new Tarjeta();
+                        return true;
+                    case 3:
+                        Console.WriteLine("> Regresando al Menu...");
+                        Utilidades.EsperaConfirmacion();
+                        return false;
+                    default:
+                        Console.WriteLine("Opcion incorrecta...");
+                    break;
+                }
+            }
+            return false;
+        }
 
         //Mostrar opcion 3
         public void MostrarInformacion()
