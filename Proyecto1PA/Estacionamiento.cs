@@ -270,7 +270,7 @@ namespace Proyecto1PA
         {
             for (int i = (espaciosOcupados+1); i <= tamañoParqueo; i++) 
             {
-                Console.WriteLine("\t#"+i+"   Espacio disponible");
+                Console.WriteLine("\t#"+ i +"   Espacio disponible");
             }
         }
 

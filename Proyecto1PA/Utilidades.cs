@@ -45,8 +45,10 @@ public static class Utilidades
             }
             else
             {
-                Console.WriteLine("Formato de fecha no válido.");
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("[!] Formato de fecha no válido.");
                 Console.Write("Inténtelo de nuevo: ");
+                Console.ResetColor();
             }
         }
     }
@@ -140,7 +142,8 @@ public static class Utilidades
             catch (FormatException)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("[!] Error: formato de fecha inválido. Intente de nuevo.");
+                Console.WriteLine("[!] Error: formato de fecha inválido.");
+                Console.Write("Intente de nuevo: ");
             }
             catch (Exception ex)
             {
@@ -198,6 +201,7 @@ public static class Utilidades
         }
         else 
         {
+            Console.Clear();
             Console.WriteLine("  > > > Regresando al menu...");
             return false;
         }

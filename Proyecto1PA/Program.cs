@@ -45,13 +45,13 @@
                         break;
                     case 5:
                         Console.Clear();
-                        Console.WriteLine("▓▓▓▓▓▓ SALIR ▓▓▓▓▓▓");
+                        Utilidades.TituloMensaje("▓▓▓▓▓▓ SALIR ▓▓▓▓▓▓");
                         Console.WriteLine("[!] Los datos del programa se eliminaran...");
                         salir = Utilidades.TerminarEjecucion();
                         break;
                     default:
                         Console.Clear();
-                        Utilidades.ErrorMensaje("Opcion Incorrecta...\nRegresando al menu...\n");
+                        Utilidades.ErrorMensaje("Opcion Incorrecta...\n> > > Regresando al menu...\n");
                         break;
                 }
             } while (!salir);
