@@ -56,10 +56,11 @@ namespace Proyecto1PA
         {
             while (MontoIngresado < Cuota)
             {
-                Console.WriteLine($"El monto ingresado ({MontoIngresado}) es insuficiente para cubrir la cuota de Q{Cuota}.");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"El monto ingresado [Q{MontoIngresado}] es insuficiente para cubrir la cuota de Q{Cuota}.");
                 Console.WriteLine("Se le ha multado con Q5 adicionales.");
                 Cuota += 5;
-                Console.WriteLine($"Nueva cuota: Q{Cuota}");
+                Console.WriteLine($"[!] Nueva cuota: Q{Cuota}");
                 Console.WriteLine();
                 Console.Write("> Vuelva a ingresar el monto: ");
                 this.MontoIngresado = Utilidades.LlenarNumeroEntero();
@@ -92,10 +93,11 @@ namespace Proyecto1PA
         public void EmitirFactura() 
         {
             Utilidades.TituloMensaje("Datos de Factura");
-            Console.WriteLine($"Numero de tarjeta: {NumeroTarjeta}");
-            Console.WriteLine($"Nombre: {NombreTitular}");
-            Console.WriteLine($"Total: Q{Cuota}");
-            Console.WriteLine($"Fecha de emision: {DateTime.Now}");
+            Console.WriteLine($"  Numero de tarjeta: {NumeroTarjeta}");
+            Console.WriteLine($"  Nombre: {NombreTitular}");
+            Console.WriteLine($"  Total: Q{Cuota}");
+            Console.WriteLine($"  Fecha de emision: {DateTime.Now}");
+            
         }
         private string ValidarNumeroTarjeta(string numeroTarjeta)
         {

@@ -123,7 +123,7 @@ namespace Proyecto1PA
                 int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo());
                 Console.WriteLine($"Hora de registro: {vehiculoRetirar.Hora}");
                 Console.WriteLine("Hora actual: " + DateTime.Now);
-                Console.WriteLine("Su cuota de estacionamiento es: Q" + cuotaEstacionamiento);
+                Console.WriteLine("La cuota de estacionamiento es: Q" + cuotaEstacionamiento);
                 Console.WriteLine();
                 if (EfectuarPago(cuotaEstacionamiento))
                 {
@@ -221,7 +221,6 @@ namespace Proyecto1PA
             }
             return false;
         }
-
         //Mostrar opcion 3
         public void MostrarInformacion()
         {
