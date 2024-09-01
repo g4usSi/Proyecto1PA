@@ -73,25 +73,26 @@ namespace Proyecto1PA
             switch (opcion) 
             {
                 case 1:
-                    Console.WriteLine("\t\t// Automovil //\n\t\t■ Cuota: Q10/hra");
+                    Console.WriteLine("\t\t\t » Automovil « \n\t■ Cuota: Q 10/hra");
                     Auto nuevoAutomovil = new Auto(placa, marca, modelo, color);
                     listaEspacios.Add(new Estacionamiento(nuevoAutomovil, DateTime.Now));
-                    Console.WriteLine("> Se ha registrado su parking...: " + DateTime.Now);
+                    Console.WriteLine("[!] Se ha registrado su parking: " + DateTime.Now);
                     break;
                 case 2:
-                    Console.WriteLine("\t\t// Motocicleta //\n\t\t■ Cuota: Q5/hra");
+                    Console.WriteLine("\t\t\t » Motocicleta « \n\t■ Cuota: Q5/hra");
                     Motocicleta nuevaMotocicleta = new Motocicleta(placa, marca, modelo, color);
                     listaEspacios.Add(new Estacionamiento(nuevaMotocicleta, DateTime.Now));
-                    Console.WriteLine("> Se ha registrado su parking...: " + DateTime.Now);
+                    Console.WriteLine("[!] Se ha registrado su parking...: " + DateTime.Now);
                     break;
                 case 3:
-                    Console.WriteLine("\t\t // Camion // \n\t\t■ Cuota: Q15/hra");
+                    Console.WriteLine("\t\t » Camion « \n\t■ Cuota: Q15/hra");
                     Camion nuevoCamion = new Camion(placa, marca, modelo, color);
                     listaEspacios.Add(new Estacionamiento(nuevoCamion, DateTime.Now));
-                    Console.WriteLine("> Se ha registrado su parking...: "+DateTime.Now);
+                    Console.WriteLine("[!] Se ha registrado su parking...: "+DateTime.Now);
                     break;
                 default:
-                    Console.WriteLine("Opcion incorrecta, regresando al menu...");
+                    Utilidades.ErrorMensaje("Opcion incorrecta, regresando al menu principal...");
+                    Utilidades.EsperaConfirmacion();
                 return;
             }
         }
@@ -111,34 +112,40 @@ namespace Proyecto1PA
         public void RetirarVehiculo(List<Estacionamiento> listaEstacionamiento) 
         {
             Console.WriteLine();
-            Console.Write("\t> Ingrese la placa del vehiculo: ");
+            Console.Write("Ingrese placa del vehiculo a retirar: ");
             string placaActual = Utilidades.LlenarString();
             Estacionamiento vehiculoRetirar = BuscarVehiculo(listaEstacionamiento, placaActual);
             if (vehiculoRetirar != null)
             {
+                Console.WriteLine();
+                Utilidades.TituloMensaje("INFORMACION DEL VEHICULO");
                 vehiculoRetirar.Vehiculo.MostrarVehiculo();
                 int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo());
-                Console.WriteLine("cuota: " + cuotaEstacionamiento);
-
+                Console.WriteLine($"Hora de registro: {vehiculoRetirar.Hora}");
+                Console.WriteLine("Hora actual: " + DateTime.Now);
+                Console.WriteLine("Su cuota de estacionamiento es: Q"+cuotaEstacionamiento);
+                Console.WriteLine();
                 if (EfectuarPago(cuotaEstacionamiento))
                 {
                     listaEstacionamiento.Remove(vehiculoRetirar);
                     Console.WriteLine("Puede retirar el vehiculo...");
                     Console.WriteLine("Feliz Dia :)");
+                    Utilidades.EsperaConfirmacion();
                 }
                 else
                 {
                     Console.WriteLine("Su vehiculo sigue en el estacionamiento...");
+                    Console.WriteLine();
                 return;
                 }
-                //Calcular Pago metodo
             }
             else
             {
-                Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n\t\tRegresando al menu...");
+                Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n\tRegresando al menu...");
+                Utilidades.EsperaConfirmacion();
             }
         }
-        //funciona busqueda
+        //funcion busqueda
         private Estacionamiento BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
         {
             foreach (var estacionamientoActual in listaEstacionamiento)
@@ -156,13 +163,10 @@ namespace Proyecto1PA
             TimeSpan tiempoTranscurrido = fechaHoraSalida - Hora;
             double minutosTotales = tiempoTranscurrido.TotalMinutes;
             int horasRedondeadas = (int)Math.Ceiling(minutosTotales / 60);
-
             return horasRedondeadas;
         }
         public int CalcularCuotaEstacionamiento(int tiempoTranscurrido) 
         {
-            Console.WriteLine("tiempo: "+tiempoTranscurrido);
-            Console.WriteLine("atributo"+Vehiculo.ObtenerCuota());
             return tiempoTranscurrido * Vehiculo.ObtenerCuota();
         }
         public bool EfectuarPago(int cuota) 
@@ -175,11 +179,13 @@ namespace Proyecto1PA
             int opcion;
             while (!entradaIncorrecta)
             {
-            Console.WriteLine("Seleccione el metodo de pago");
-            Console.WriteLine("1. Efectivo");
-            Console.WriteLine("2. Tarjeta");
-            Console.WriteLine("3. Cancelar");
-            Console.Write("Ingrese una opcion: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("■ Seleccione el metodo de pago:");
+            Console.ResetColor();
+            Console.WriteLine("   1. Efectivo");
+            Console.WriteLine("   2. Tarjeta");
+            Console.WriteLine("   3. Cancelar");
+            Console.Write(" > Ingrese una opcion: ");
             opcion = Utilidades.LlenarNumeroEntero();
                 switch (opcion)
                 {
@@ -189,6 +195,7 @@ namespace Proyecto1PA
                         int montoCliente = Utilidades.LlenarNumeroEntero();
                         this.Pago = new Efectivo(montoCliente, cuota);
                         Pago.Cobrar(Pago.CalcularCambio());
+                        Console.WriteLine();
                         return true;
                     case 2:
                         Utilidades.TituloMensaje("PAGO CON TARJETA");
@@ -224,7 +231,7 @@ namespace Proyecto1PA
         {
             if (listaEstacionamiento.Count > 0)
             {
-                Utilidades.TituloMensaje("\tINFORMACION DE LOS VEHICULOS");
+                Utilidades.TituloMensaje("\t INFORMACION DE LOS VEHICULOS");
                 Console.WriteLine();
                 int posicion = 1;
                 foreach (var vehiculo in listaEstacionamiento)

@@ -25,12 +25,12 @@ namespace Proyecto1PA
         }
         public virtual void MostrarVehiculo()
         {
-            Console.WriteLine($"- Tipo Vehiculo: {Tipo}");
-            Console.WriteLine($"- Placa: {Placa}");
-            Console.WriteLine($"- Marca: {Marca}");
-            Console.WriteLine($"- Modelo: {Modelo}");
-            Console.WriteLine($"- Color: {Color}");
-            Console.WriteLine($"- Cuota: Q{Cuota}/hra");
+            Console.WriteLine($"  · Tipo Vehiculo: {Tipo}");
+            Console.WriteLine($"  · Placa: {Placa}");
+            Console.WriteLine($"  · Marca: {Marca}");
+            Console.WriteLine($"  · Modelo: {Modelo}");
+            Console.WriteLine($"  · Color: {Color}");
+            Console.WriteLine($"  · Cuota: Q{Cuota}/hra");
         }
         //este no se usa nunca ;/
         public void MostrarVehiculos(List<Vehiculo> listaVehiculos)

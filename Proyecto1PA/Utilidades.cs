@@ -24,8 +24,10 @@ public static class Utilidades
     }
     public static void EsperaConfirmacion() 
     {
-        Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.WriteLine("---------------------------------------------------------------------------------------------------");
         Console.WriteLine("\t\t\t\tPresione 'Enter' para continuar...");
+        Console.ResetColor();
         Console.ReadKey();
         Console.Clear();
     }

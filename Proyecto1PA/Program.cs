@@ -60,7 +60,7 @@
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\t\t\tPARQUEO XYZ");
-                Console.WriteLine("\t\t##### Menu Principal #####");
+                Console.WriteLine("\t  ▓▓▓▓▓▓▓▓▓▓▓▓ Menu Principal ▓▓▓▓▓▓▓▓▓▓▓▓");
                 Console.ResetColor();
                 Console.WriteLine("\n1. Registrar vehiculo");
                 Console.WriteLine("2. Retirar vehiculo");

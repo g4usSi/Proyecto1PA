@@ -33,9 +33,10 @@ namespace Proyecto1PA
         private string[] BilleSystem = { "Billete(s) de Q200", "Billete(s) de Q100", "Billete(s) de Q50", "Billete(s) de Q20", "Billete(s) de Q10", "Billete(s) de Q5", "Moneda(s) de Q1" };
         public override void Cobrar(int cambio)
         {
+            Console.WriteLine();
             if (cambio != 0)
             {
-                Console.WriteLine("Cambio de: ");
+                Console.WriteLine("> Cambio de: Q"+cambio);
                 for (int i = 0; i < DenomSystem.Length; i++)
                 {
                     int cantidad = cambio / DenomSystem[i];
