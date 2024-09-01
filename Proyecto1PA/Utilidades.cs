@@ -31,6 +31,24 @@ public static class Utilidades
     }
     //numero entero solo para menu
     //
+    public static DateOnly ObtenerFecha()
+    {
+        while (true)
+        {
+            Console.Write("Ingrese una fecha (dd/MM/yyyy): ");
+            string fechaIngresada = Console.ReadLine();
+
+            if (DateOnly.TryParseExact(fechaIngresada, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateOnly fecha))
+            {
+                return fecha;
+            }
+            else
+            {
+                Console.WriteLine("Formato de fecha no válido.");
+                Console.Write("Inténtelo de nuevo: ");
+            }
+        }
+    }
     public static int LlenarNumeroEntero()
     {
         int numeroEntero = 0;

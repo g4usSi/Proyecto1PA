@@ -27,7 +27,7 @@
                         Console.Clear();
                         //imprimir los vehiculos
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
-
+                        estacionamiento.RetirarVehiculo(listaVehiculos);
                         break;
                     case 3:
                         Console.Clear();

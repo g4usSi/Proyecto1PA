@@ -116,12 +116,12 @@ namespace Proyecto1PA
             if (vehiculoRetirar != null)
             {
                 vehiculoRetirar.Vehiculo.MostrarVehiculo();
-                int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo(););
+                int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo());
                 if (EfectuarPago(cuotaEstacionamiento))
                 {
-
                     listaEstacionamiento.Remove(vehiculoRetirar);
-                    Console.WriteLine("Feliz Dia");
+                    Console.WriteLine("Puede retirar el vehiculo...");
+                    Console.WriteLine("Feliz Dia :)");
                 }
                 else
                 {
@@ -160,6 +160,10 @@ namespace Proyecto1PA
         }
         public bool EfectuarPago(int cuota) 
         {
+            string numTarjeta, nombreTitular;
+            int cvv;
+            DateOnly fechaTarjeta;
+
             bool entradaIncorrecta = false;
             int opcion;
             while (!entradaIncorrecta)
@@ -173,13 +177,24 @@ namespace Proyecto1PA
                 switch (opcion)
                 {
                     case 1:
-                        Console.Write("Ingrese el monto: ");
+                        Utilidades.TituloMensaje("PAGO CON EFECTIVO");
+                        Console.Write("Ingrese el monto del cliente: ");
                         int montoCliente = Utilidades.LlenarNumeroEntero();
                         this.Pago = new Efectivo(montoCliente, cuota);
+                        Pago.Cobrar(Pago.CalcularCambio());
                         return true;
                     case 2:
-
-                        this.Pago = new Tarjeta();
+                        Utilidades.TituloMensaje("PAGO CON TARJETA");
+                        Console.Write($"Ingrese el numero de tarjeta:");
+                        numTarjeta = Utilidades.LlenarString();
+                        Console.Write($"Ingrese el nombre del titular:");
+                        nombreTitular = Utilidades.LlenarString();
+                        Console.Write($"Ingrese la fecha de vencimiento (dd/MM/yyyy): ");
+                        fechaTarjeta = Utilidades.ObtenerFecha();
+                        Console.Write($"Ingrese el numero CVV: ");
+                        cvv = Utilidades.LlenarNumeroEntero();
+                        this.Pago = new Tarjeta(cuota, numTarjeta, nombreTitular, fechaTarjeta, cvv);
+                        Pago.Cobrar(0);
                         return true;
                     case 3:
                         Console.WriteLine("> Regresando al Menu...");
