@@ -123,7 +123,7 @@ namespace Proyecto1PA
                 int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo());
                 Console.WriteLine($"Hora de registro: {vehiculoRetirar.Hora}");
                 Console.WriteLine("Hora actual: " + DateTime.Now);
-                Console.WriteLine("Su cuota de estacionamiento es: Q"+cuotaEstacionamiento);
+                Console.WriteLine("Su cuota de estacionamiento es: Q" + cuotaEstacionamiento);
                 Console.WriteLine();
                 if (EfectuarPago(cuotaEstacionamiento))
                 {
@@ -169,7 +169,7 @@ namespace Proyecto1PA
         {
             return tiempoTranscurrido * Vehiculo.ObtenerCuota();
         }
-        public bool EfectuarPago(int cuota) 
+        private bool EfectuarPago(int cuota) 
         {
             string numTarjeta, nombreTitular;
             int cvv;
@@ -199,9 +199,9 @@ namespace Proyecto1PA
                         return true;
                     case 2:
                         Utilidades.TituloMensaje("PAGO CON TARJETA");
-                        Console.Write($"Ingrese el numero de tarjeta:");
+                        Console.Write($"Ingrese el numero de tarjeta: ");
                         numTarjeta = Utilidades.LlenarString();
-                        Console.Write($"Ingrese el nombre del titular:");
+                        Console.Write($"Ingrese el nombre del titular: ");
                         nombreTitular = Utilidades.LlenarString();
                         Console.Write($"Ingrese la fecha de vencimiento (dd/MM/yyyy): ");
                         fechaTarjeta = Utilidades.ObtenerFecha();
@@ -258,13 +258,22 @@ namespace Proyecto1PA
                 int espaciosOcupados = listaEstacionamientos.Count;
                 int espaciosDisponibles = tamañoParqueo - espaciosOcupados;
                 Console.WriteLine("Espacios disponibles: " + espaciosDisponibles);
+                ImprimirEspacios(espaciosOcupados, tamañoParqueo);
+                Console.WriteLine();
             }
             else
             {
-                Console.WriteLine("Estacionamiento lleno, no hay espacios disponibles...");
+                Utilidades.ErrorMensaje("Estacionamiento lleno, no hay espacios disponibles...");
+                Console.WriteLine();
             }
         }
-
+        private void ImprimirEspacios(int espaciosOcupados, int tamañoParqueo) 
+        {
+            for (int i = (espaciosOcupados+1); i <= tamañoParqueo; i++) 
+            {
+                Console.WriteLine("\t#"+i+"   Espacio disponible");
+            }
+        }
 
     }
 }

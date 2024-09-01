@@ -87,12 +87,11 @@ namespace Proyecto1PA
         public override void Cobrar(int cambio = 0) 
         {
             EmitirFactura();
-            Utilidades.EsperaConfirmacion();
             Console.WriteLine();
         }
         public void EmitirFactura() 
         {
-            Console.WriteLine("Datos de Factura");
+            Utilidades.TituloMensaje("Datos de Factura");
             Console.WriteLine($"Numero de tarjeta: {NumeroTarjeta}");
             Console.WriteLine($"Nombre: {NombreTitular}");
             Console.WriteLine($"Total: Q{Cuota}");
@@ -102,7 +101,8 @@ namespace Proyecto1PA
         {
             if (numeroTarjeta.Length != 16 || !numeroTarjeta.All(char.IsDigit))
             {
-                Console.WriteLine("Número de tarjeta inválido. Ingrese nuevamente:");
+                Console.WriteLine("Número de tarjeta inválido.");
+                Console.Write("Ingrese nuevamente: ");
                 return ValidarNumeroTarjeta(Utilidades.LlenarString());
             }
             return numeroTarjeta;
@@ -112,7 +112,8 @@ namespace Proyecto1PA
         {
             if (string.IsNullOrWhiteSpace(nombreTitular))
             {
-                Console.WriteLine("Nombre del titular inválido. Ingrese nuevamente:");
+                Console.WriteLine("Nombre del titular inválido.");
+                Console.Write("Ingrese nuevamente: ");
                 return ValidarNombreTitular(Utilidades.LlenarString());
             }
             return nombreTitular;
@@ -122,7 +123,8 @@ namespace Proyecto1PA
         {
             if (fechaVencimiento <= DateOnly.FromDateTime(DateTime.Now))
             {
-                Console.WriteLine("Fecha de vencimiento inválida. Ingrese nuevamente:");
+                Console.WriteLine("Fecha de vencimiento inválida.");
+                Console.Write("Ingrese nuevamente: ");
                 return ValidarFechaVencimiento(Utilidades.LlenarFecha());
             }
             return fechaVencimiento;
@@ -132,7 +134,8 @@ namespace Proyecto1PA
         {
             if (cVV.ToString().Length != 3)
             {
-                Console.WriteLine("CVV inválido. Ingrese nuevamente:");
+                Console.WriteLine("CVV inválido.");
+                Console.Write("Ingrese nuevamente: ");
                 return ValidarCVV(Utilidades.LlenarNumeroEntero());
             }
             return cVV;
