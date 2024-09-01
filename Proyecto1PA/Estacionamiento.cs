@@ -153,10 +153,11 @@ namespace Proyecto1PA
         public int CalcularTiempo()
         {
             DateTime fechaHoraSalida = DateTime.Now;
-            TimeSpan horasTranscurridas = fechaHoraSalida - Hora;
-            double tiempoTotal = horasTranscurridas.Minutes;
-            int tiempoRedondeado = (int)tiempoTotal;
-            return tiempoRedondeado;
+            TimeSpan tiempoTranscurrido = fechaHoraSalida - Hora;
+            double minutosTotales = tiempoTranscurrido.TotalMinutes;
+            int horasRedondeadas = (int)Math.Ceiling(minutosTotales / 60);
+
+            return horasRedondeadas;
         }
         public int CalcularCuotaEstacionamiento(int tiempoTranscurrido) 
         {
