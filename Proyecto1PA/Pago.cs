@@ -35,12 +35,13 @@ namespace Proyecto1PA
         {
             if (cambio != 0)
             {
+                Console.WriteLine("Cambio de: ");
                 for (int i = 0; i < DenomSystem.Length; i++)
                 {
                     int cantidad = cambio / DenomSystem[i];
                     if (cantidad > 0)
                     {
-                        Console.WriteLine(cantidad + " " + BilleSystem[i]);
+                        Console.WriteLine("\t\t■ " + cantidad + " " + BilleSystem[i]);
                         cambio %= DenomSystem[i];
                     }
                 }

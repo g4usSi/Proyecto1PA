@@ -35,7 +35,6 @@ public static class Utilidades
     {
         while (true)
         {
-            Console.Write("Ingrese una fecha (dd/MM/yyyy): ");
             string fechaIngresada = Console.ReadLine();
 
             if (DateOnly.TryParseExact(fechaIngresada, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateOnly fecha))

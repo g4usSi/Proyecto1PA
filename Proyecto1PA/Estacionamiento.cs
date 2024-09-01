@@ -110,13 +110,16 @@ namespace Proyecto1PA
         //Retirar vehiculo opcion 2
         public void RetirarVehiculo(List<Estacionamiento> listaEstacionamiento) 
         {
-            Console.WriteLine("Ingrese la placa del vehiculo: ");
+            Console.WriteLine();
+            Console.Write("\t> Ingrese la placa del vehiculo: ");
             string placaActual = Utilidades.LlenarString();
             Estacionamiento vehiculoRetirar = BuscarVehiculo(listaEstacionamiento, placaActual);
             if (vehiculoRetirar != null)
             {
                 vehiculoRetirar.Vehiculo.MostrarVehiculo();
                 int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo());
+                Console.WriteLine("cuota: " + cuotaEstacionamiento);
+
                 if (EfectuarPago(cuotaEstacionamiento))
                 {
                     listaEstacionamiento.Remove(vehiculoRetirar);
@@ -135,6 +138,7 @@ namespace Proyecto1PA
                 Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n\t\tRegresando al menu...");
             }
         }
+        //funciona busqueda
         private Estacionamiento BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
         {
             foreach (var estacionamientoActual in listaEstacionamiento)
@@ -150,12 +154,14 @@ namespace Proyecto1PA
         {
             DateTime fechaHoraSalida = DateTime.Now;
             TimeSpan horasTranscurridas = fechaHoraSalida - Hora;
-            double tiempoTotal = horasTranscurridas.Hours;
+            double tiempoTotal = horasTranscurridas.Minutes;
             int tiempoRedondeado = (int)tiempoTotal;
             return tiempoRedondeado;
         }
         public int CalcularCuotaEstacionamiento(int tiempoTranscurrido) 
         {
+            Console.WriteLine("tiempo: "+tiempoTranscurrido);
+            Console.WriteLine("atributo"+Vehiculo.ObtenerCuota());
             return tiempoTranscurrido * Vehiculo.ObtenerCuota();
         }
         public bool EfectuarPago(int cuota) 
