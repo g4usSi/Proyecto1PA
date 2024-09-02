@@ -9,7 +9,6 @@ namespace Proyecto1PA
     public class Pago
     {
         public int Cuota { get; set; }
-        //este se le hereda a tarjeta... solo son sus atributos privados de verificacion
         public Pago(int cuota)
         {
             this.Cuota = cuota;
@@ -20,7 +19,6 @@ namespace Proyecto1PA
         return 0;
         }
     }
-
     public class Efectivo : Pago 
     {
         public int MontoIngresado { get; set; }

@@ -31,8 +31,6 @@ public static class Utilidades
         Console.ReadKey();
         Console.Clear();
     }
-    //numero entero solo para menu
-    //
     public static DateOnly ObtenerFecha()
     {
         while (true)
