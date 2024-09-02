@@ -25,6 +25,7 @@
                     case 2:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
+                        estacionamiento.MostrarInformacionLista(listaVehiculos);
                         estacionamiento.RetirarVehiculo(listaVehiculos);
                         break;
                     case 3:

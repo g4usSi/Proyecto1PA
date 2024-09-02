@@ -19,7 +19,7 @@ namespace Proyecto1PA
         return 0;
         }
     }
-    public class Efectivo : Pago 
+    public class Efectivo : Pago
     {
         public int MontoIngresado { get; set; }
         public Efectivo(int montoIngresado, int cuota)
@@ -110,7 +110,7 @@ namespace Proyecto1PA
 
         private string ValidarNombreTitular(string nombreTitular)
         {
-            if (string.IsNullOrWhiteSpace(nombreTitular))
+            if (nombreTitular == "")
             {
                 Console.WriteLine("Nombre del titular inválido.");
                 Console.Write("Ingrese nuevamente: ");

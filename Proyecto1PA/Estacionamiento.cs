@@ -268,7 +268,7 @@ namespace Proyecto1PA
         }
         private void ImprimirEspacios(int espaciosOcupados, int tamañoParqueo) 
         {
-            for (int i = 0;i<= espaciosOcupados;i++) 
+            for (int i = 1;i<= espaciosOcupados;i++) 
             {
                 Console.WriteLine("\t#" + i + "   Espacio ocupado");
             }
