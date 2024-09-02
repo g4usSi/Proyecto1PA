@@ -18,14 +18,12 @@
                 {
                     case 1:
                         Console.Clear();
-                        //imprimir los vehiculos
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ REGISTRAR VEHICULO ▓▓▓▓▓▓");
                         estacionamiento.AsignarEspacio(listaVehiculos, tamañoEstacionamiento);
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 2:
                         Console.Clear();
-                        //imprimir los vehiculos
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
                         estacionamiento.RetirarVehiculo(listaVehiculos);
                         break;

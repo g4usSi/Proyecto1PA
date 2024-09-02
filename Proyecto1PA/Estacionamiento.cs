@@ -134,14 +134,14 @@ namespace Proyecto1PA
                 }
                 else
                 {
-                    Console.WriteLine("Su vehiculo sigue en el estacionamiento...");
+                    Console.WriteLine("El vehiculo sigue en el estacionamiento...");
                     Console.WriteLine();
                 return;
                 }
             }
             else
             {
-                Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n\tRegresando al menu...");
+                Utilidades.ErrorMensaje("No hay ninguna placa que coincida\n> > > Regresando al menu...");
                 Utilidades.EsperaConfirmacion();
             }
         }
@@ -268,7 +268,11 @@ namespace Proyecto1PA
         }
         private void ImprimirEspacios(int espaciosOcupados, int tamañoParqueo) 
         {
-            for (int i = (espaciosOcupados+1); i <= tamañoParqueo; i++) 
+            for (int i = 0;i<= espaciosOcupados;i++) 
+            {
+                Console.WriteLine("\t#" + i + "   Espacio ocupado");
+            }
+            for (int i = (espaciosOcupados+1); i <= tamañoParqueo; i++)
             {
                 Console.WriteLine("\t#"+ i +"   Espacio disponible");
             }
