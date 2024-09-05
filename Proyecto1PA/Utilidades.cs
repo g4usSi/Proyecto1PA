@@ -87,10 +87,10 @@ public static class Utilidades
                 Console.ResetColor();
             }
         }
-
         return numeroEntero;
     }
-    public static string Enmascarado(bool estado) {
+    public static string Enmascarado(bool estado) 
+    {
         if (estado)
         {
             return "Disponible";

@@ -1,15 +1,16 @@
-﻿namespace Proyecto1PA
+﻿//Version de solo 1 lista
+namespace Proyecto1PA
 { 
     public class Program
     {
         public static int tamañoEstacionamiento = 20;
-        public static void Main(string[] args)
+        public static void main(string[] args)
         {
+            // Programa Base
             Estacionamiento estacionamiento = new Estacionamiento();
             List<Estacionamiento> listaVehiculos = new List<Estacionamiento>();
             int opcion = 0;
             bool salir = false;
-
             do
             {
                 Menu();
@@ -26,6 +27,7 @@
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
                         estacionamiento.MostrarInformacionLista(listaVehiculos);
+                        Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────────────");
                         estacionamiento.RetirarVehiculo(listaVehiculos);
                         break;
                     case 3:
@@ -54,7 +56,7 @@
                         break;
                 }
             } while (!salir);
-
+            
             static void Menu()
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;

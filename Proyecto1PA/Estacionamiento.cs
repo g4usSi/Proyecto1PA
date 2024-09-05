@@ -10,13 +10,13 @@ namespace Proyecto1PA
 {
     public class Estacionamiento
     {
-        public Vehiculo Vehiculo { get; set; }
-        public DateTime Hora { get; set; }
+        public Vehiculo VehiculoEstacionado { get; set; }
+        public DateTime HoraEntrada { get; set; }
         public Pago Pago { get; set; }
         public Estacionamiento(Vehiculo vehiculo, DateTime date)
         {
-            this.Vehiculo = vehiculo;
-            this.Hora = date;
+            this.VehiculoEstacionado = vehiculo;
+            this.HoraEntrada = date;
         }
         public Estacionamiento() { }
         //Agregacion opcion 1
@@ -100,7 +100,7 @@ namespace Proyecto1PA
         {
             foreach (var vehiculoActual in listaEstacionamiento) 
             {
-                if (vehiculoActual.Vehiculo.Placa.ToLower() == placa.ToLower()) 
+                if (vehiculoActual.VehiculoEstacionado.Placa.ToLower() == placa.ToLower()) 
                 {
                     Utilidades.ErrorMensaje("\t\tPlaca repetida");
                     return true;
@@ -119,9 +119,9 @@ namespace Proyecto1PA
             {
                 Console.WriteLine();
                 Utilidades.TituloMensaje("INFORMACION DEL VEHICULO");
-                vehiculoRetirar.Vehiculo.MostrarVehiculo();
+                vehiculoRetirar.VehiculoEstacionado.MostrarVehiculo();
                 int cuotaEstacionamiento = vehiculoRetirar.CalcularCuotaEstacionamiento(vehiculoRetirar.CalcularTiempo());
-                Console.WriteLine($"Hora de registro: {vehiculoRetirar.Hora}");
+                Console.WriteLine($"Hora de registro: {vehiculoRetirar.HoraEntrada}");
                 Console.WriteLine("Hora actual: " + DateTime.Now);
                 Console.WriteLine("La cuota de estacionamiento es: Q" + cuotaEstacionamiento);
                 Console.WriteLine();
@@ -150,7 +150,7 @@ namespace Proyecto1PA
         {
             foreach (var estacionamientoActual in listaEstacionamiento)
             {
-                if (estacionamientoActual.Vehiculo.Placa.ToLower().Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
+                if (estacionamientoActual.VehiculoEstacionado.Placa.ToLower().Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return estacionamientoActual;
                 }
@@ -160,14 +160,14 @@ namespace Proyecto1PA
         public int CalcularTiempo()
         {
             DateTime fechaHoraSalida = DateTime.Now;
-            TimeSpan tiempoTranscurrido = fechaHoraSalida - Hora;
+            TimeSpan tiempoTranscurrido = fechaHoraSalida - HoraEntrada;
             double minutosTotales = tiempoTranscurrido.TotalMinutes;
             int horasRedondeadas = (int)Math.Ceiling(minutosTotales / 60);
             return horasRedondeadas;
         }
         public int CalcularCuotaEstacionamiento(int tiempoTranscurrido) 
         {
-            return tiempoTranscurrido * Vehiculo.ObtenerCuota();
+            return tiempoTranscurrido * VehiculoEstacionado.ObtenerCuota();
         }
         private bool EfectuarPago(int cuota) 
         {
@@ -224,7 +224,7 @@ namespace Proyecto1PA
         //Mostrar opcion 3
         public void MostrarInformacion()
         {
-            Vehiculo.MostrarVehiculo();
+            VehiculoEstacionado.MostrarVehiculo();
         }
         public void MostrarInformacionLista(List<Estacionamiento> listaEstacionamiento) 
         {
@@ -237,7 +237,7 @@ namespace Proyecto1PA
                 {
                     Console.WriteLine("\t\t\tVehiculo #" + posicion);
                     vehiculo.MostrarInformacion();
-                    Console.WriteLine($"Hora de registro: {vehiculo.Hora}");
+                    Console.WriteLine($"Hora de registro: {vehiculo.HoraEntrada}");
                     posicion++;
                     Console.WriteLine();
                 }
@@ -268,11 +268,11 @@ namespace Proyecto1PA
         }
         private void ImprimirEspacios(int espaciosOcupados, int tamañoParqueo) 
         {
-            for (int i = 1;i<= espaciosOcupados;i++) 
+            for (int i = 1; i <= espaciosOcupados;i++) 
             {
                 Console.WriteLine("\t#" + i + "   Espacio ocupado");
             }
-            for (int i = (espaciosOcupados+1); i <= tamañoParqueo; i++)
+            for (int i = (espaciosOcupados + 1); i <= tamañoParqueo; i++)
             {
                 Console.WriteLine("\t#"+ i +"   Espacio disponible");
             }

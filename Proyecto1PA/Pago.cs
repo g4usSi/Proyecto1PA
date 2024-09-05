@@ -47,13 +47,13 @@ namespace Proyecto1PA
             }
             else
             {
-                Console.WriteLine("Feliz dia");
+                Utilidades.TituloMensaje("Feliz dia");
             }
         }
         public override int CalcularCambio()
         {
             while (MontoIngresado < Cuota)
-            {
+            {\
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"El monto ingresado [Q{MontoIngresado}] es insuficiente para cubrir la cuota de Q{Cuota}.");
                 Console.WriteLine("Se le ha multado con Q5 adicionales.");
@@ -132,7 +132,7 @@ namespace Proyecto1PA
 
         private int ValidarCVV(int cVV)
         {
-            if (cVV.ToString().Length != 3)
+            if (cVV.ToString().Length != 3|| cVV.ToString().Length != 4)
             {
                 Console.WriteLine("CVV inválido.");
                 Console.Write("Ingrese nuevamente: ");
