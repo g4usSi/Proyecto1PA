@@ -4,7 +4,7 @@ namespace Proyecto1PA
     public class Program
     {
         public static int tamañoEstacionamiento = 20;
-        public static void main(string[] args)
+        public static void Main(string[] args)
         {
             // Programa Base
             Estacionamiento estacionamiento = new Estacionamiento();
@@ -43,7 +43,6 @@ namespace Proyecto1PA
                     case 4:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR ESPACIOS DISPONIBLES ▓▓▓▓▓▓");
-                        Console.WriteLine("vrga");
                         estacionamiento.EspaciosDisponibles(listaAutos, listaMotocicletas, listaCamiones, tamañoEstacionamiento);
                         Console.WriteLine();
                         Utilidades.EsperaConfirmacion();

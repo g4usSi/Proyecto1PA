@@ -396,7 +396,7 @@ namespace Proyecto1PA
             if (Disponibilidad(autos, tamañoParqueo))
             {
                 Utilidades.TituloMensaje("░░░ AUTOS ░░░");
-                Console.WriteLine("Espacios disponibles: " + (autos.Count - tamañoParqueo));
+                Console.WriteLine("Espacios disponibles: " + (tamañoParqueo-autos.Count));
                 ImprimirEspacios(autos.Count, tamañoParqueo);
                 Console.WriteLine();
             }
@@ -409,7 +409,7 @@ namespace Proyecto1PA
             if (Disponibilidad(motocicletas, tamañoParqueo))
             {
                 Utilidades.TituloMensaje("░░░ MOTOS ░░░");
-                Console.WriteLine("Espacios disponibles: " + (motocicletas.Count - tamañoParqueo));
+                Console.WriteLine("Espacios disponibles: " + (tamañoParqueo - motocicletas.Count));
                 ImprimirEspacios(motocicletas.Count, tamañoParqueo);
                 Console.WriteLine();
             }
@@ -422,7 +422,7 @@ namespace Proyecto1PA
             if (Disponibilidad(camiones, tamañoParqueo))
             {
                 Utilidades.TituloMensaje("░░░ CAMIONES ░░░");
-                Console.WriteLine("Espacios disponibles: " + (camiones.Count - tamañoParqueo));
+                Console.WriteLine("Espacios disponibles: " + (tamañoParqueo - camiones.Count));
                 ImprimirEspacios(camiones.Count, tamañoParqueo);
                 Console.WriteLine();
             }
@@ -437,10 +437,6 @@ namespace Proyecto1PA
             for (int i = 1; i <= espaciosOcupados;i++) 
             {
                 Console.WriteLine("\t#" + i + "   Espacio ocupado");
-            }
-            for (int i = (espaciosOcupados + 1); i <= tamañoParqueo; i++)
-            {
-                Console.WriteLine("\t#"+ i +"   Espacio disponible");
             }
 
         }

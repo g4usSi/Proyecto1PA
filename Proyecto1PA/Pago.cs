@@ -53,7 +53,7 @@ namespace Proyecto1PA
         public override int CalcularCambio()
         {
             while (MontoIngresado < Cuota)
-            {\
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"El monto ingresado [Q{MontoIngresado}] es insuficiente para cubrir la cuota de Q{Cuota}.");
                 Console.WriteLine("Se le ha multado con Q5 adicionales.");
