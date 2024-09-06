@@ -27,12 +27,12 @@ namespace Proyecto1PA
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 2:
-                        /*Console.Clear();
+                        Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
-                        estacionamiento.MostrarInformacionLista(listaVehiculos);
+                        estacionamiento.MostrarInformacionLista(listaAutos, listaMotocicletas, listaCamiones);
                         Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────────────");
-                        estacionamiento.RetirarVehiculo(listaVehiculos);
-                        break;*/
+                        estacionamiento.RetirarVehiculo(listaAutos, listaMotocicletas, listaCamiones);
+                        break;
                     case 3:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR VEHICULOS ESTACIONADOS ▓▓▓▓▓▓");

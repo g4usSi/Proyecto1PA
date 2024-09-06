@@ -176,12 +176,13 @@ namespace Proyecto1PA
         }
 
         //Retirar vehiculo opcion 2
-        public void RetirarVehiculo(List<Estacionamiento> listaEstacionamiento) 
+        public void RetirarVehiculo(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones)
         {
             Console.WriteLine();
             Console.Write("Ingrese placa del vehiculo a retirar: ");
             string placaActual = Utilidades.LlenarString();
-            Estacionamiento vehiculoRetirar = BuscarVehiculo(listaEstacionamiento, placaActual);
+            Estacionamiento vehiculoRetirar = BuscarVehiculo(autos, motocicletas, camiones, placaActual);
+
             if (vehiculoRetirar != null)
             {
                 Console.WriteLine();
@@ -192,18 +193,27 @@ namespace Proyecto1PA
                 Console.WriteLine("Hora actual: " + DateTime.Now);
                 Console.WriteLine("La cuota de estacionamiento es: Q" + cuotaEstacionamiento);
                 Console.WriteLine();
+
                 if (EfectuarPago(cuotaEstacionamiento))
                 {
-                    listaEstacionamiento.Remove(vehiculoRetirar);
-                    Console.WriteLine("Puede retirar el vehiculo...");
-                    Console.WriteLine("Feliz Dia :)");
+                    bool eliminado = EliminarVehiculoDeListas(autos, motocicletas, camiones, vehiculoRetirar);
+
+                    if (eliminado)
+                    {
+                        Console.WriteLine("Puede retirar el vehiculo...");
+                        Console.WriteLine("Feliz Dia :)");
+                    }
+                    else
+                    {
+                        Console.WriteLine("El vehiculo no se encontró en ninguna lista de estacionamiento.");
+                    }
+
                     Utilidades.EsperaConfirmacion();
                 }
                 else
                 {
                     Console.WriteLine("El vehiculo sigue en el estacionamiento...");
                     Console.WriteLine();
-                return;
                 }
             }
             else
@@ -212,17 +222,47 @@ namespace Proyecto1PA
                 Utilidades.EsperaConfirmacion();
             }
         }
-        //funcion busqueda
-        private Estacionamiento BuscarVehiculo(List<Estacionamiento> listaEstacionamiento, string placaActual) 
+        private Estacionamiento BuscarVehiculo(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones, string placaActual)
         {
-            foreach (var estacionamientoActual in listaEstacionamiento)
+            foreach (var estacionamientoActual in autos)
             {
-                if (estacionamientoActual.VehiculoEstacionado.Placa.ToLower().Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
+                if (estacionamientoActual.VehiculoEstacionado.Placa.Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return estacionamientoActual;
+                }
+            }
+            foreach (var estacionamientoActual in motocicletas)
+            {
+                if (estacionamientoActual.VehiculoEstacionado.Placa.Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return estacionamientoActual;
+                }
+            }
+            foreach (var estacionamientoActual in camiones)
+            {
+                if (estacionamientoActual.VehiculoEstacionado.Placa.Equals(placaActual, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return estacionamientoActual;
                 }
             }
             return null;
+        }
+        private bool EliminarVehiculoDeListas(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones, Estacionamiento vehiculo)
+        {
+            bool eliminado = false;
+            if (autos.Remove(vehiculo))
+            {
+                eliminado = true;
+            }
+            else if (motocicletas.Remove(vehiculo))
+            {
+                eliminado = true;
+            }
+            else if (camiones.Remove(vehiculo))
+            {
+                eliminado = true;
+            }
+            return eliminado;
         }
         public int CalcularTiempo()
         {
@@ -348,8 +388,6 @@ namespace Proyecto1PA
                 return;
             }
         }
-
-
 
         /*
         //Espacios Disponibles
