@@ -20,46 +20,37 @@ namespace Proyecto1PA
         }
         public Estacionamiento() { }
         //Agregacion opcion 1
-        public void AsignarEspacio(List<Estacionamiento> listaEstacionamiento, int tamañoEstacionamiento) 
+        public void AsignarEspacio(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones, int tamañoEstacionamiento) 
         {
             string placa, marca, modelo, color;
-            if (ComprobarEspacios(listaEstacionamiento, tamañoEstacionamiento))
-            {
-                Console.WriteLine();
-                Console.Write("Ingrese la placa del vehiculo: ");
-                placa = Utilidades.LlenarString().ToUpper();
-                Console.Write("Ingrese la marca del vehiculo: ");
-                marca = Utilidades.LlenarString();
-                Console.Write("Ingrese el modelo del vehiculo: ");
-                modelo = Utilidades.LlenarString();
-                Console.Write("Ingrese el color del vehiculo: ");
-                color = Utilidades.LlenarString();
-                Console.WriteLine();
-                RegistrarTipoVehiculo(placa, marca, modelo, color, listaEstacionamiento);
-            }
-            else
-            {
-                Utilidades.ErrorMensaje("Estacionamiento completamente lleno...");
-            }
+            Console.WriteLine();
+            Console.Write("Ingrese la placa del vehiculo: ");
+            placa = Utilidades.LlenarString().ToUpper();
+            Console.Write("Ingrese la marca del vehiculo: ");
+            marca = Utilidades.LlenarString();
+            Console.Write("Ingrese el modelo del vehiculo: ");
+            modelo = Utilidades.LlenarString();
+            Console.Write("Ingrese el color del vehiculo: ");
+            color = Utilidades.LlenarString();
+            Console.WriteLine();
+            RegistrarTipoVehiculo(placa, marca, modelo, color, autos, motocicletas, camiones, tamañoEstacionamiento);
         }
-        public bool ComprobarEspacios(List<Estacionamiento> listaEspacios, int tamañoEstacionamiento) 
+        //Comprobar espacios
+        public bool ComprobarEspaciosAutos(List<Estacionamiento> autos, int tamañoEstacionamiento)
         {
-            if (listaEspacios.Count < tamañoEstacionamiento)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return autos.Count < tamañoEstacionamiento;
         }
-        private void RegistrarTipoVehiculo(string placa, string marca, string modelo, string color, List<Estacionamiento> listaEspacios) 
+        public bool ComprobarEspaciosMotocicletas(List<Estacionamiento> motocicletas, int tamañoEstacionamiento)
         {
-            if (placa.Length < 6 || PlacaRepetida(listaEspacios, placa))
-            {
-                Utilidades.ErrorMensaje("Datos incorrectos, no se ha registrado el vehiculo.");
-                return;
-            }
+            return motocicletas.Count < tamañoEstacionamiento;
+        }
+        public bool ComprobarEspaciosCamiones(List<Estacionamiento> camiones, int tamañoEstacionamiento)
+        {
+            return camiones.Count < tamañoEstacionamiento;
+        }
+        //Registrar Vehiculo a la lista
+        private void RegistrarTipoVehiculo(string placa, string marca, string modelo, string color, List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones, int tamaño)
+        {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("■ Seleccione el tipo de vehiculo");
             Console.ResetColor();
@@ -70,44 +61,120 @@ namespace Proyecto1PA
             int opcion = Utilidades.LlenarNumeroEntero();
             Console.WriteLine();
 
-            switch (opcion) 
+            switch (opcion)
             {
                 case 1:
-                    Console.WriteLine("\t\t\t » Automovil « \n\t■ Cuota: Q 10/hra");
-                    Auto nuevoAutomovil = new Auto(placa, marca, modelo, color);
-                    listaEspacios.Add(new Estacionamiento(nuevoAutomovil, DateTime.Now));
-                    Console.WriteLine("[!] Se ha registrado su parking: " + DateTime.Now);
+                    RegistrarAutomovil(placa, marca, modelo, color, autos, tamaño);
                     break;
                 case 2:
-                    Console.WriteLine("\t\t\t » Motocicleta « \n\t■ Cuota: Q5/hra");
-                    Motocicleta nuevaMotocicleta = new Motocicleta(placa, marca, modelo, color);
-                    listaEspacios.Add(new Estacionamiento(nuevaMotocicleta, DateTime.Now));
-                    Console.WriteLine("[!] Se ha registrado su parking...: " + DateTime.Now);
+                    RegistrarMotocicleta(placa, marca, modelo, color, motocicletas, tamaño);
                     break;
                 case 3:
-                    Console.WriteLine("\t\t » Camion « \n\t■ Cuota: Q15/hra");
-                    Camion nuevoCamion = new Camion(placa, marca, modelo, color);
-                    listaEspacios.Add(new Estacionamiento(nuevoCamion, DateTime.Now));
-                    Console.WriteLine("[!] Se ha registrado su parking...: "+DateTime.Now);
+                    RegistrarCamion(placa, marca, modelo, color, camiones, tamaño);
                     break;
                 default:
                     Utilidades.ErrorMensaje("Opcion incorrecta, regresando al menu principal...");
                     Utilidades.EsperaConfirmacion();
-                return;
+                break;
             }
         }
-        private bool PlacaRepetida(List<Estacionamiento> listaEstacionamiento, string placa) 
+        //Registrar cada vehiculo
+        private void RegistrarAutomovil(string placa, string marca, string modelo, string color, List<Estacionamiento> autos, int tamaño)
         {
-            foreach (var vehiculoActual in listaEstacionamiento) 
+            if (ComprobarEspaciosAutos(autos, tamaño)) 
             {
-                if (vehiculoActual.VehiculoEstacionado.Placa.ToLower() == placa.ToLower()) 
+                Console.WriteLine("\t\t\t » Automovil « \n\t\t■ Cuota: Q 10/hra");
+                if (placa.Length < 6 || PlacaRepetidaEnAutos(autos, placa))
                 {
-                    Utilidades.ErrorMensaje("\t\tPlaca repetida");
+                    Utilidades.ErrorMensaje("Datos incorrectos, no se ha registrado el vehiculo.");
+                    return;
+                }
+                Auto nuevoAutomovil = new Auto(placa, marca, modelo, color);
+                autos.Add(new Estacionamiento(nuevoAutomovil, DateTime.Now));
+                Console.WriteLine("[!] Se ha registrado su parking: " + DateTime.Now);
+            }
+            else 
+            {
+                Utilidades.ErrorMensaje("Estacionamiento completamente lleno...");
+            }
+        }
+        private void RegistrarMotocicleta(string placa, string marca, string modelo, string color, List<Estacionamiento> motocicletas, int tamaño)
+        {
+            if (ComprobarEspaciosAutos(motocicletas, tamaño))
+            {
+                Console.WriteLine("\t\t\t » Motocicleta « \n\t■ Cuota: Q5/hra");
+                if (placa.Length < 6 || PlacaRepetidaEnMotocicletas(motocicletas, placa))
+                {
+                    Utilidades.ErrorMensaje("Datos incorrectos, no se ha registrado el vehiculo.");
+                    return;
+                }
+                Motocicleta nuevaMotocicleta = new Motocicleta(placa, marca, modelo, color);
+                motocicletas.Add(new Estacionamiento(nuevaMotocicleta, DateTime.Now));
+                Console.WriteLine("[!] Se ha registrado su parking...: " + DateTime.Now);
+            }
+            else
+            {
+                Utilidades.ErrorMensaje("Estacionamiento completamente lleno...");
+            }
+        }
+
+        private void RegistrarCamion(string placa, string marca, string modelo, string color, List<Estacionamiento> camiones, int tamaño)
+        {
+            if (ComprobarEspaciosAutos(camiones, tamaño))
+            {
+                Console.WriteLine("\t\t » Camion « \n\t■ Cuota: Q15/hra");
+                if (placa.Length < 6 || PlacaRepetidaEnCamiones(camiones, placa))
+                {
+                    Utilidades.ErrorMensaje("Datos incorrectos, no se ha registrado el vehiculo.");
+                    return;
+                }
+                Camion nuevoCamion = new Camion(placa, marca, modelo, color);
+                camiones.Add(new Estacionamiento(nuevoCamion, DateTime.Now));
+                Console.WriteLine("[!] Se ha registrado su parking...: " + DateTime.Now);
+            }
+            else 
+            {
+                Utilidades.ErrorMensaje("Estacionamiento completamente lleno...");
+            }
+        }
+        //Comprobar placa
+        private bool PlacaRepetidaEnAutos(List<Estacionamiento> autos, string placa)
+        {
+            foreach (var auto in autos)
+            {
+                if (auto.VehiculoEstacionado.Placa.ToLower() == placa.ToLower())
+                {
+                    Utilidades.ErrorMensaje("\t\tPlaca repetida...");
                     return true;
                 }
             }
             return false;
         }
+        private bool PlacaRepetidaEnMotocicletas(List<Estacionamiento> motocicletas, string placa)
+        {
+            foreach (var motocicleta in motocicletas)
+            {
+                if (motocicleta.VehiculoEstacionado.Placa.ToLower() == placa.ToLower())
+                {
+                    Utilidades.ErrorMensaje("\t\tPlaca repetida...");
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool PlacaRepetidaEnCamiones(List<Estacionamiento> camiones, string placa)
+        {
+            foreach (var camion in camiones)
+            {
+                if (camion.VehiculoEstacionado.Placa.ToLower() == placa.ToLower())
+                {
+                    Utilidades.ErrorMensaje("\t\tPlaca repetida...");
+                    return true;
+                }
+            }
+            return false;
+        }
+
         //Retirar vehiculo opcion 2
         public void RetirarVehiculo(List<Estacionamiento> listaEstacionamiento) 
         {
@@ -248,6 +315,10 @@ namespace Proyecto1PA
                 return;
             }
         }
+
+
+
+
         //Espacios Disponibles
         public void EspaciosDisponibles(List<Estacionamiento> listaEstacionamientos, int tamañoParqueo)
         {
@@ -278,5 +349,42 @@ namespace Proyecto1PA
             }
         }
 
+        //Administracion de Listas
+        // Buscar en una lista específica
+        public Vehiculo BuscarVehiculo(List<Auto> listaAutos, List<Motocicleta> listaMotocicletas, List<Camion> listaCamiones, string placaVehiculoBuscar)
+        {
+            // Buscar en la lista de Autos
+            foreach (var auto in listaAutos)
+            {
+                if (auto.Placa == placaVehiculoBuscar)
+                {
+                    return auto; // Retornar el vehículo encontrado
+                }
+            }
+
+            // Buscar en la lista de Motocicletas
+            foreach (var motocicleta in listaMotocicletas)
+            {
+                if (motocicleta.Placa == placaVehiculoBuscar)
+                {
+                    return motocicleta; // Retornar el vehículo encontrado
+                }
+            }
+
+            // Buscar en la lista de Camiones
+            foreach (var camion in listaCamiones)
+            {
+                if (camion.Placa == placaVehiculoBuscar)
+                {
+                    return camion; // Retornar el vehículo encontrado
+                }
+            }
+
+            // Retornar null si no se encontró el vehículo
+            return null;
+        }
+    
     }
+
+
 }

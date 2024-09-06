@@ -8,7 +8,10 @@ namespace Proyecto1PA
         {
             // Programa Base
             Estacionamiento estacionamiento = new Estacionamiento();
-            List<Estacionamiento> listaVehiculos = new List<Estacionamiento>();
+            List<Estacionamiento> listaAutos = new List<Estacionamiento>();
+            List<Estacionamiento> listaMotocicletas = new List<Estacionamiento>();
+            List<Estacionamiento> listaCamiones = new List<Estacionamiento>();
+
             int opcion = 0;
             bool salir = false;
             do
@@ -20,7 +23,7 @@ namespace Proyecto1PA
                     case 1:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ REGISTRAR VEHICULO ▓▓▓▓▓▓");
-                        estacionamiento.AsignarEspacio(listaVehiculos, tamañoEstacionamiento);
+                        estacionamiento.AsignarEspacio(listaAutos, listaMotocicletas, listaCamiones, tamañoEstacionamiento);
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 2:
