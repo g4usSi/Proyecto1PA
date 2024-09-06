@@ -100,7 +100,7 @@ namespace Proyecto1PA
         }
         private void RegistrarMotocicleta(string placa, string marca, string modelo, string color, List<Estacionamiento> motocicletas, int tamaño)
         {
-            if (ComprobarEspaciosAutos(motocicletas, tamaño))
+            if (ComprobarEspaciosMotocicletas(motocicletas, tamaño))
             {
                 Console.WriteLine("\t\t\t » Motocicleta « \n\t■ Cuota: Q5/hra");
                 if (placa.Length < 6 || PlacaRepetidaEnMotocicletas(motocicletas, placa))
@@ -120,7 +120,7 @@ namespace Proyecto1PA
 
         private void RegistrarCamion(string placa, string marca, string modelo, string color, List<Estacionamiento> camiones, int tamaño)
         {
-            if (ComprobarEspaciosAutos(camiones, tamaño))
+            if (ComprobarEspaciosCamiones(camiones, tamaño))
             {
                 Console.WriteLine("\t\t » Camion « \n\t■ Cuota: Q15/hra");
                 if (placa.Length < 6 || PlacaRepetidaEnCamiones(camiones, placa))
@@ -389,22 +389,46 @@ namespace Proyecto1PA
             }
         }
 
-        /*
+        
         //Espacios Disponibles
-        public void EspaciosDisponibles(List<Estacionamiento> listaEstacionamientos, int tamañoParqueo)
+        public void EspaciosDisponibles(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones, int tamañoParqueo)
         {
-            bool hayEspacio = ComprobarEspacios(listaEstacionamientos, tamañoParqueo);
-            if (hayEspacio)
+            if (Disponibilidad(autos, tamañoParqueo))
             {
-                int espaciosOcupados = listaEstacionamientos.Count;
-                int espaciosDisponibles = tamañoParqueo - espaciosOcupados;
-                Console.WriteLine("Espacios disponibles: " + espaciosDisponibles);
-                ImprimirEspacios(espaciosOcupados, tamañoParqueo);
+                Utilidades.TituloMensaje("░░░ AUTOS ░░░");
+                Console.WriteLine("Espacios disponibles: " + (autos.Count - tamañoParqueo));
+                ImprimirEspacios(autos.Count, tamañoParqueo);
                 Console.WriteLine();
             }
             else
             {
-                Utilidades.ErrorMensaje("Estacionamiento lleno, no hay espacios disponibles...");
+                Utilidades.ErrorMensaje("Estacionamiento  de autos lleno, no hay espacios disponibles...");
+                Console.WriteLine();
+            }
+
+            if (Disponibilidad(motocicletas, tamañoParqueo))
+            {
+                Utilidades.TituloMensaje("░░░ MOTOS ░░░");
+                Console.WriteLine("Espacios disponibles: " + (motocicletas.Count - tamañoParqueo));
+                ImprimirEspacios(motocicletas.Count, tamañoParqueo);
+                Console.WriteLine();
+            }
+            else
+            {
+                Utilidades.ErrorMensaje("Estacionamiento de motocicletas lleno, no hay espacios disponibles...");
+                Console.WriteLine();
+            }
+
+            if (Disponibilidad(camiones, tamañoParqueo))
+            {
+                Utilidades.TituloMensaje("░░░ CAMIONES ░░░");
+                Console.WriteLine("Espacios disponibles: " + (camiones.Count - tamañoParqueo));
+                ImprimirEspacios(camiones.Count, tamañoParqueo);
+                Console.WriteLine();
+            }
+            else
+            {
+                Utilidades.ErrorMensaje("Estacionamiento de camiones lleno, no hay espacios disponibles...");
                 Console.WriteLine();
             }
         }
@@ -418,45 +442,17 @@ namespace Proyecto1PA
             {
                 Console.WriteLine("\t#"+ i +"   Espacio disponible");
             }
-        }
 
-        //Administracion de Listas
-        // Buscar en una lista específica
-        public Vehiculo BuscarVehiculo(List<Auto> listaAutos, List<Motocicleta> listaMotocicletas, List<Camion> listaCamiones, string placaVehiculoBuscar)
+        }
+        private bool Disponibilidad(List<Estacionamiento> vehiculos, int tamaño)
         {
-            // Buscar en la lista de Autos
-            foreach (var auto in listaAutos)
+            if (vehiculos.Count >= tamaño) 
             {
-                if (auto.Placa == placaVehiculoBuscar)
-                {
-                    return auto; // Retornar el vehículo encontrado
-                }
+                return false;
             }
-
-            // Buscar en la lista de Motocicletas
-            foreach (var motocicleta in listaMotocicletas)
-            {
-                if (motocicleta.Placa == placaVehiculoBuscar)
-                {
-                    return motocicleta; // Retornar el vehículo encontrado
-                }
-            }
-
-            // Buscar en la lista de Camiones
-            foreach (var camion in listaCamiones)
-            {
-                if (camion.Placa == placaVehiculoBuscar)
-                {
-                    return camion; // Retornar el vehículo encontrado
-                }
-            }
-
-            // Retornar null si no se encontró el vehículo
-            return null;
+            return true;
         }
-        */
-    
+
+
     }
-
-
 }

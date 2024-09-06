@@ -41,12 +41,13 @@ namespace Proyecto1PA
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 4:
-                        /*Console.Clear();
+                        Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR ESPACIOS DISPONIBLES ▓▓▓▓▓▓");
-                        estacionamiento.EspaciosDisponibles(listaVehiculos, tamañoEstacionamiento);
+                        Console.WriteLine("vrga");
+                        estacionamiento.EspaciosDisponibles(listaAutos, listaMotocicletas, listaCamiones, tamañoEstacionamiento);
                         Console.WriteLine();
                         Utilidades.EsperaConfirmacion();
-                        break;*/
+                        break;
                     case 5:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ SALIR ▓▓▓▓▓▓");
