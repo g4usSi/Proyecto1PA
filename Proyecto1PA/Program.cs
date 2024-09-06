@@ -4,7 +4,7 @@ namespace Proyecto1PA
     public class Program
     {
         public static int tamañoEstacionamiento = 20;
-        public static void main(string[] args)
+        public static void Main(string[] args)
         {
             // Programa Base
             Estacionamiento estacionamiento = new Estacionamiento();
