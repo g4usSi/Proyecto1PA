@@ -293,14 +293,30 @@ namespace Proyecto1PA
         {
             VehiculoEstacionado.MostrarVehiculo();
         }
-        public void MostrarInformacionLista(List<Estacionamiento> listaEstacionamiento) 
+        private bool EstacionamientoOcupado(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones)
         {
-            if (listaEstacionamiento.Count > 0)
+            if (autos.Count > 0)
+            {
+                return true;
+            }
+            if (motocicletas.Count > 0)
+            {
+                return true;
+            }
+            if (camiones.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public void MostrarInformacionLista(List<Estacionamiento> autos, List<Estacionamiento> motocicletas, List<Estacionamiento> camiones) 
+        {
+            if (EstacionamientoOcupado(autos, motocicletas, camiones))
             {
                 Utilidades.TituloMensaje("\t INFORMACION DE LOS VEHICULOS");
                 Console.WriteLine();
                 int posicion = 1;
-                foreach (var vehiculo in listaEstacionamiento)
+                foreach (var vehiculo in autos)
                 {
                     Console.WriteLine("\t\t\tVehiculo #" + posicion);
                     vehiculo.MostrarInformacion();
@@ -308,6 +324,23 @@ namespace Proyecto1PA
                     posicion++;
                     Console.WriteLine();
                 }
+                foreach (var vehiculo in motocicletas)
+                {
+                    Console.WriteLine("\t\t\tVehiculo #" + posicion);
+                    vehiculo.MostrarInformacion();
+                    Console.WriteLine($"Hora de registro: {vehiculo.HoraEntrada}");
+                    posicion++;
+                    Console.WriteLine();
+                }
+                foreach (var vehiculo in camiones)
+                {
+                    Console.WriteLine("\t\t\tVehiculo #" + posicion);
+                    vehiculo.MostrarInformacion();
+                    Console.WriteLine($"Hora de registro: {vehiculo.HoraEntrada}");
+                    posicion++;
+                    Console.WriteLine();
+                }
+
             }
             else
             {
@@ -318,7 +351,7 @@ namespace Proyecto1PA
 
 
 
-
+        /*
         //Espacios Disponibles
         public void EspaciosDisponibles(List<Estacionamiento> listaEstacionamientos, int tamañoParqueo)
         {
@@ -383,6 +416,7 @@ namespace Proyecto1PA
             // Retornar null si no se encontró el vehículo
             return null;
         }
+        */
     
     }
 

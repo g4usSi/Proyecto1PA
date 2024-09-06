@@ -27,26 +27,26 @@ namespace Proyecto1PA
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 2:
-                        Console.Clear();
+                        /*Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ RETIRAR VEHICULO ▓▓▓▓▓▓");
                         estacionamiento.MostrarInformacionLista(listaVehiculos);
                         Console.WriteLine("──────────────────────────────────────────────────────────────────────────────────────────");
                         estacionamiento.RetirarVehiculo(listaVehiculos);
-                        break;
+                        break;*/
                     case 3:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR VEHICULOS ESTACIONADOS ▓▓▓▓▓▓");
-                        estacionamiento.MostrarInformacionLista(listaVehiculos);
+                        estacionamiento.MostrarInformacionLista(listaAutos, listaMotocicletas, listaCamiones);
                         Console.WriteLine();
                         Utilidades.EsperaConfirmacion();
                         break;
                     case 4:
-                        Console.Clear();
+                        /*Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ MOSTRAR ESPACIOS DISPONIBLES ▓▓▓▓▓▓");
                         estacionamiento.EspaciosDisponibles(listaVehiculos, tamañoEstacionamiento);
                         Console.WriteLine();
                         Utilidades.EsperaConfirmacion();
-                        break;
+                        break;*/
                     case 5:
                         Console.Clear();
                         Utilidades.TituloMensaje("▓▓▓▓▓▓ SALIR ▓▓▓▓▓▓");
